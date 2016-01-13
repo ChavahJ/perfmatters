@@ -1,0 +1,117 @@
+html { font-size: 62.5%; }
+
+body {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 2rem;
+ }
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: 'Alice', serif;
+}
+
+a { color: #12C; }
+a:visited { color: #61C; }
+a:focus { outline: thin dotted; }
+a:hover, a:active { color: #c00; outline: 0; }
+
+strong {
+    font-weight: bold;
+}
+
+.img-fluid {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  padding: .75rem 0;
+}
+
+header,
+footer,
+.container {
+  padding-right: .9375rem;
+  padding-left: .9375rem;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 45rem;
+}
+
+.container::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.row {
+  margin: 0 -.9375rem;
+  padding: 2rem 0;
+
+}
+
+.row::after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.profile-pic {
+    padding: 0 2rem;
+    border-radius: 50%;
+    float: left;
+}
+
+header {
+    color: red;
+}
+
+.hero { padding: 2em; background-color: #f8f8f8; font-size:1.2em;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+}
+
+.content { padding: 1em 1em; }
+.content li { list-style-type: none; font-size: 1.1em;}
+li img { float:left; padding-right: 1em; }
+li p { font-size: 0.9em; font-style: italic; }
+
+footer {
+  padding: 0 0.5em;
+  border-top: 1px solid #ccc;
+}
+footer span { float: right; font-style: italic; }
+
+
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.75rem;
+}
+
+h4 {
+  font-size: 1.5rem;
+}
+
+h5 {
+  font-size: 1.25rem;
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+.small {
+  font-size: 80%;
+  font-weight: normal;
+}
