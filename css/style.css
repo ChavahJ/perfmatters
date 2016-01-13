@@ -23,12 +23,22 @@ strong {
     font-weight: bold;
 }
 
-.img-fluid {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: auto;
-  padding: .75rem 0;
+.img-all {
+    display: block;
+    margin: auto;
+}
+
+.img-profile {
+    max-width: 100%;
+    border-radius: 50%;
+    padding: .75rem 0;
+    float: left;
+}
+
+.img-article {
+    max-width: 50%;
+    padding: 0 2rem;
+    float: left;
 }
 
 header,
@@ -59,33 +69,30 @@ footer,
   content: "";
 }
 
-.profile-pic {
-    padding: 0 2rem;
-    border-radius: 50%;
-    float: left;
-}
-
 header {
     color: red;
 }
 
-.hero { padding: 2em; background-color: #f8f8f8; font-size:1.2em;
-  border-bottom: 1px solid #ccc;
-  border-top: 1px solid #ccc;
+.hero {
+    padding: 2rem;
+    background-color: #9a9a9a;
+    font-size: 2rem;
+    border-bottom: 1px solid #434343;
+    border-top: 1px solid #434343;
 }
 
-.content { padding: 1em 1em; }
-.content li { list-style-type: none; font-size: 1.1em;}
-li img { float:left; padding-right: 1em; }
-li p { font-size: 0.9em; font-style: italic; }
+.content {
+    padding: 1rem;
+}
 
 footer {
   padding: 0 0.5em;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #434343;
 }
-footer span { float: right; font-style: italic; }
-
-
+footer span {
+    float: right;
+    font-style: italic;
+}
 
 h1 {
   font-size: 2.5rem;
