@@ -14,16 +14,21 @@ textarea {
     font-family: 'Alice', serif;
 }
 
-a { color: #12C; }
-a:visited { color: #61C; }
+a {
+    color: #ff0000;
+    text-decoration: none;
+}
+a:visited {
+    color: #b20000;
+}
 a:focus { outline: thin dotted; }
-a:hover, a:active { color: #c00; outline: 0; }
+a:hover, a:active { color: #ff6666; outline: 0; }
 
 strong {
     font-weight: bold;
 }
 
-.img-all {
+.img-article {
     display: block;
     margin: auto;
 }
@@ -31,12 +36,13 @@ strong {
 .img-profile {
     max-width: 100%;
     border-radius: 50%;
-    padding: .75rem 0;
+    padding: .5rem;
+    margin-right: 2rem;
     float: left;
 }
 
-.img-article {
-    max-width: 50%;
+.img-thumb {
+    max-width: 40%;
     padding: 0 2rem;
     float: left;
 }
@@ -70,12 +76,12 @@ footer,
 }
 
 header {
-    color: red;
+    color: #ff0000;
 }
 
 .hero {
     padding: 2rem;
-    background-color: #9a9a9a;
+    background-color: #ddd;
     font-size: 2rem;
     border-bottom: 1px solid #434343;
     border-top: 1px solid #434343;
