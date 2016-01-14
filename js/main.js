@@ -1,145 +1,129 @@
 /*
-Welcome to the 60fps project! Your goal is to make Cam's Pizzeria website run
-jank-free at 60 frames per second.
-
-There are two major issues in this code that lead to sub-60fps performance. Can
-you spot and fix both?
-
-
 Built into the code, you'll find a few instances of the User Timing API
 (window.performance), which will be console.log()ing frame rate data into the
 browser console. To learn more about User Timing API, check out:
 http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
-
-Creator:
-Cameron Pittman, Udacity Course Developer
-cameron *at* udacity *dot* com
 */
 
-// As you may have realized, this website randomly generates pizzas.
-// Here are arrays of all possible pizza ingredients.
-var pizzaIngredients = {};
-pizzaIngredients.meats = [
-  "Pepperoni",
-  "Sausage",
-  "Fennel Sausage",
-  "Spicy Sausage",
-  "Chicken",
-  "BBQ Chicken",
-  "Chorizo",
-  "Chicken Andouille",
-  "Salami",
-  "Tofu",
-  "Bacon",
-  "Canadian Bacon",
-  "Proscuitto",
-  "Italian Sausage",
-  "Ground Beef",
-  "Anchovies",
-  "Turkey",
-  "Ham",
-  "Venison",
-  "Lamb",
-  "Duck",
-  "Soylent Green",
-  "Carne Asada",
-  "Soppressata Picante",
-  "Coppa",
-  "Pancetta",
-  "Bresola",
-  "Lox",
-  "Guanciale",
-  "Chili",
-  "Beef Jerky",
-  "Pastrami",
-  "Kielbasa",
-  "Scallops",
-  "Filet Mignon"
+// As you may have realized, this website randomly generates Tea Parties.
+// Here are arrays of all possible Tea Party ingredients.
+var teaPartyIngredients = {};
+teaPartyIngredients.tea = [
+  "Earl Grey Tea",
+  "Darjeeling Tea",
+  "Red Tea",
+  "White Tea",
+  "Oolang Tea",
+  "Sencha Tea",
+  "Matcha Tea",
+  "Black Dragon Tea",
+  "Keemun Tea",
+  "Yunnan Tea",
+  "Pu'er Tea",
+  "Ginseng Tisane",
+  "Chamomile Tisane ",
+  "Lemon Verbana",
+  "Ginger Tisane",
+  "Mint Tea",
+  "Ginkgo Root Tisane",
+  "Biloba Tisane",
+  "Rooibos Tea",
+  "Rosehip Tisane",
+  "Hibiscus Tisane",
+  "Fennel Tisane",
+  "Dandelion Tisane",
+  "Elderberry Tisane",
+  "Fennel Tisane",
+  "Sassafras Tisane",
+  "Turmeric Tisane",
+  "Raspberry Leaf Tea",
+  "Pennyroyal Tea",
+  "Poppy Tisane",
+  "Nettle Tisane",
+  "Licorice Root Tea",
+  "Hot Apple Cider",
+  "Hot Chocolate",
+  "Hot Milk",
+  "Horehound Tisane"
 ];
-pizzaIngredients.nonMeats = [
-  "White Onions",
-  "Red Onions",
-  "Sauteed Onions",
-  "Green Peppers",
-  "Red Peppers",
-  "Banana Peppers",
-  "Ghost Peppers",
-  "Habanero Peppers",
-  "Jalapeno Peppers",
-  "Stuffed Peppers",
-  "Spinach",
-  "Tomatoes",
-  "Pineapple",
-  "Pear Slices",
-  "Apple Slices",
-  "Mushrooms",
-  "Arugula",
-  "Basil",
-  "Fennel",
-  "Rosemary",
-  "Cilantro",
-  "Avocado",
-  "Guacamole",
-  "Salsa",
-  "Swiss Chard",
-  "Kale",
-  "Sun Dried Tomatoes",
-  "Walnuts",
-  "Artichoke",
-  "Asparagus",
-  "Caramelized Onions",
-  "Mango",
-  "Garlic",
-  "Olives",
-  "Cauliflower",
-  "Polenta",
-  "Fried Egg",
-  "Zucchini",
-  "Hummus"
+teaPartyIngredients.cake = [
+  "White Cake",
+  "Red Velvet Cake",
+  "Chocolate Cake",
+  "Lemon Poppyseed Cake",
+  "Coconut Cake",
+  "Banana Walnut Cake",
+  "Strawberry Cream Cake",
+  "Chocolate Chip Cookies",
+  "Cream Cake",
+  "Coffee Cake",
+  "Crumble Cake",
+  "Apple Crumble Cake",
+  "Pineapple Upsidedown Cake",
+  "Pear Cake",
+  "Apple Crumble",
+  "Brownies",
+  "Ice Cream Cake",
+  "Banana Cream Pie",
+  "Petit Four",
+  "Lemon Cream Pie",
+  "Apple Pie",
+  "Volcano Mousse",
+  "Truffles",
+  "Classic Trifle",
+  "Vanilla Cream Cake",
+  "Chocolate Walnut Cake",
+  "Pecan Pie",
+  "Apple Walnut Cake",
+  "Sugar Cookies",
+  "Caramel Cream Cake"
 ];
-pizzaIngredients.cheeses = [
+teaPartyIngredients.sandwichInside = [
   "American Cheese",
   "Swiss Cheese",
-  "Goat Cheese",
+  "Cucumbers",
   "Mozzarella Cheese",
   "Parmesean Cheese",
-  "Velveeta Cheese",
+  "Sun Dried Tomatoes",
   "Gouda Cheese",
   "Muenster Cheese",
-  "Applewood Cheese",
-  "Asiago Cheese",
-  "Bleu Cheese",
-  "Boursin Cheese",
+  "Avocado",
+  "Tomatoes",
+  "Fried Egg",
+  "Zucchini",
+  "Tuna",
   "Brie Cheese",
   "Cheddar Cheese",
-  "Chevre Cheese",
-  "Havarti Cheese",
+  "Roast Garlic",
+  "Guacamole",
   "Jack Cheese",
-  "Pepper Jack Cheese",
-  "Gruyere Cheese",
-  "Limberger Cheese",
-  "Manchego Cheese",
-  "Marscapone Cheese",
-  "Pecorino Cheese",
+  "Sliced Avocado",
+  "Tahina",
+  "Olive Spread",
+  "Smoked Salmon",
+  "Lettuce",
+  "Cream Cheese",
   "Provolone Cheese",
-  "Queso Cheese",
+  "Butter",
   "Roquefort Cheese",
   "Romano Cheese",
   "Ricotta Cheese",
   "Smoked Gouda"
 ];
-pizzaIngredients.sauces = [
-  "Red Sauce",
-  "Marinara",
-  "BBQ Sauce",
-  "No Sauce",
-  "Hot Sauce"
+teaPartyIngredients.condiment = [
+  "Mayonnaise",
+  "Ketchup",
+  "Mustard",
+  "Pesto",
+  "Honey"
 ];
-pizzaIngredients.crusts = [
-  "White Crust",
-  "Whole Wheat Crust",
-  "Flatbread Crust",
-  "Stuffed Crust"
+teaPartyIngredients.bread = [
+  "White Bread",
+  "White Rolls",
+  "Whole Wheat Bread",
+  "Rye Bread",
+  "Flat Bread",
+  "Spelt Rolls"
 ];
 
 // Name generator pulled from http://saturdaykid.com/usernames/generator.html
@@ -282,10 +266,10 @@ function getNoun(y) {
   }
 }
 
-var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for pizza titles
-var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for pizza titles
+var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for tea party titles
+var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for tea party titles
 
-// Generates random numbers for getAdj and getNoun functions and returns a new pizza name
+// Generates random numbers for getAdj and getNoun functions and returns a new tea party name
 function generator(adj, noun) {
   var adjectives = getAdj(adj);
   var nouns = getNoun(noun);
@@ -303,117 +287,120 @@ function randomName() {
 }
 
 // These functions return a string of a random ingredient from each respective category of ingredients.
-var selectRandomMeat = function() {
-  var randomMeat = pizzaIngredients.meats[Math.floor((Math.random() * pizzaIngredients.meats.length))];
-  return randomMeat;
+var selectRandomTea = function() {
+  var randomTea = teaPartyIngredients.tea[Math.floor((Math.random() * teaPartyIngredients.tea.length))];
+  return randomTea;
 };
 
-var selectRandomNonMeat = function() {
-  var randomNonMeat = pizzaIngredients.nonMeats[Math.floor((Math.random() * pizzaIngredients.nonMeats.length))];
-  return randomNonMeat;
+var selectRandomCake = function() {
+  var randomCake = teaPartyIngredients.cake[Math.floor((Math.random() * teaPartyIngredients.cake.length))];
+  return randomCake;
 };
 
-var selectRandomCheese = function() {
-  var randomCheese = pizzaIngredients.cheeses[Math.floor((Math.random() * pizzaIngredients.cheeses.length))];
-  return randomCheese;
+var selectRandomSandwichInside = function() {
+  var randomSandwichInside = teaPartyIngredients.sandwichInside[Math.floor((Math.random() * teaPartyIngredients.sandwichInside.length))];
+  return randomSandwichInside;
 };
 
-var selectRandomSauce = function() {
-  var randomSauce = pizzaIngredients.sauces[Math.floor((Math.random() * pizzaIngredients.sauces.length))];
-  return randomSauce;
+var selectRandomCondiment = function() {
+  var randomCondiment = teaPartyIngredients.condiment[Math.floor((Math.random() * teaPartyIngredients.condiment.length))];
+  return randomCondiment;
 };
 
-var selectRandomCrust = function() {
-  var randomCrust = pizzaIngredients.crusts[Math.floor((Math.random() * pizzaIngredients.crusts.length))];
-  return randomCrust;
+var selectrandomBread = function() {
+  var randomBread = teaPartyIngredients.bread[Math.floor((Math.random() * teaPartyIngredients.bread.length))];
+  return randomBread;
 };
 
 var ingredientItemizer = function(string) {
   return "<li>" + string + "</li>";
 };
 
-// Returns a string with random pizza ingredients nested inside <li> tags
-var makeRandomPizza = function() {
-  var pizza = "";
+// Returns a string with randomTeaParty ingredients nested inside <li> tags
+var makeRandomTeaParty = function() {
+  var teaParty = "";
 
-  var numberOfMeats = Math.floor((Math.random() * 4));
-  var numberOfNonMeats = Math.floor((Math.random() * 3));
-  var numberOfCheeses = Math.floor((Math.random() * 2));
+  var numberOfTeas = Math.floor((Math.random() * 2) + 1);
+  var numberOfCakes = Math.floor((Math.random() * 3));
+  var numberOfInsides = Math.floor((Math.random() * 4) + 1);
 
-  for (var i = 0; i < numberOfMeats; i++) {
-    pizza = pizza + ingredientItemizer(selectRandomMeat());
+  for (var i = 0; i < numberOfTeas; i++) {
+    teaParty = teaParty + ingredientItemizer(selectRandomTea());
   }
 
-  for (var j = 0; j < numberOfNonMeats; j++) {
-    pizza = pizza + ingredientItemizer(selectRandomNonMeat());
+  for (var j = 0; j < numberOfCakes; j++) {
+    teaParty = teaParty + ingredientItemizer(selectRandomCake());
   }
 
-  for (var k = 0; k < numberOfCheeses; k++) {
-    pizza = pizza + ingredientItemizer(selectRandomCheese());
+  for (var k = 0; k < numberOfInsides; k++) {
+    teaParty = teaParty + ingredientItemizer(selectRandomSandwichInside());
   }
 
-  pizza = pizza + ingredientItemizer(selectRandomSauce());
-  pizza = pizza + ingredientItemizer(selectRandomCrust());
+  teaParty = teaParty + ingredientItemizer(selectRandomCondiment());
+  teaParty = teaParty + ingredientItemizer(selectrandomBread());
 
-  return pizza;
+  return teaParty;
 };
 
-// returns a DOM element for each pizza
-var pizzaElementGenerator = function(i) {
-  var pizzaContainer,             // contains pizza title, image and list of ingredients
-      pizzaImageContainer,        // contains the pizza image
-      pizzaImage,                 // the pizza image itself
-      pizzaDescriptionContainer,  // contains the pizza title and list of ingredients
-      pizzaName,                  // the pizza name itself
+// returns a DOM element for each TeaParty
+var teaPartyElementGenerator = function(i) {
+  var teaPartyContainer,             // contains tea party title, image and list of ingredients
+      teaPartyImageContainer,        // contains the tea pot image
+      teaPartyImage,                 // the tea pot image itself
+      teaPartyDescriptionContainer,  // contains the tea party title and list of ingredients
+      teaPartyName,                  // the tea party name itself
       ul;                         // the list of ingredients
 
-  pizzaContainer  = document.createElement("div");
-  pizzaImageContainer = document.createElement("div");
-  pizzaImage = document.createElement("img");
-  pizzaDescriptionContainer = document.createElement("div");
+  teaPartyContainer  = document.createElement("div");
+  teaPartyImageContainer = document.createElement("div");
+  teaPartyImage = document.createElement("img");
+  teaPartyDescriptionContainer = document.createElement("div");
 
-  pizzaContainer.classList.add("randomPizzaContainer");
-  pizzaContainer.style.width = "33.33%";
-  pizzaContainer.style.height = "325px";
-  pizzaContainer.id = "pizza" + i;                // gives each pizza element a unique id
-  pizzaImageContainer.classList.add("col-md-6");
+  teaPartyContainer.classList.add("randomTeaPartyContainer");
+  teaPartyContainer.style.width = "33.33%";
+  teaPartyContainer.style.height = "35rem";
+  teaPartyContainer.id = "teaParty" + i;                // gives each tea party element a unique id
+  teaPartyImageContainer.classList.add("col-md-6");
 
-  pizzaImage.src = "images/pizza.png";
-  pizzaImage.classList.add("img-responsive");
-  pizzaImageContainer.appendChild(pizzaImage);
-  pizzaContainer.appendChild(pizzaImageContainer);
+  teaPartyImage.src = "img/sweet-tea-left.png";
+  teaPartyImage.classList.add("img-responsive");
+  teaPartyImageContainer.appendChild(teaPartyImage);
+  teaPartyContainer.appendChild(teaPartyImageContainer);
 
 
-  pizzaDescriptionContainer.classList.add("col-md-6");
+  teaPartyDescriptionContainer.classList.add("col-md-6");
 
-  pizzaName = document.createElement("h4");
-  pizzaName.innerHTML = randomName();
-  pizzaDescriptionContainer.appendChild(pizzaName);
+  teaPartyName = document.createElement("h4");
+  teaPartyName.innerHTML = randomName();
+  teaPartyDescriptionContainer.appendChild(teaPartyName);
 
   ul = document.createElement("ul");
-  ul.innerHTML = makeRandomPizza();
-  pizzaDescriptionContainer.appendChild(ul);
-  pizzaContainer.appendChild(pizzaDescriptionContainer);
+  ul.innerHTML = makeRandomTeaParty();
+  teaPartyDescriptionContainer.appendChild(ul);
+  teaPartyContainer.appendChild(teaPartyDescriptionContainer);
 
-  return pizzaContainer;
+  return teaPartyContainer;
 };
 
-// resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
-var resizePizzas = function(size) {
+// resizeTeaParty(size) is called when the slider in the "Our Tea Parties" section of the website moves.
+var resizeTeaParty = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-  // Changes the value for the size of the pizza above the slider
+  // Changes the value for the size of the TeaParty above the slider
   function changeSliderLabel(size) {
     switch(size) {
-      case "1":
-        document.querySelector("#pizzaSize").innerHTML = "Small";
+        case "1":
+        document.querySelector("#teaPartySize").innerHTML = "Small (1-2 Participants)";
         return;
-      case "2":
-        document.querySelector("#pizzaSize").innerHTML = "Medium";
+        case "2":
+        document.querySelector("#teaPartySize").innerHTML = "Medium (3-4 Participants)";
         return;
-      case "3":
-        document.querySelector("#pizzaSize").innerHTML = "Large";
+        case "3":
+        document.querySelector("#teaPartySize").innerHTML = "Large (5-6 Participants)";
         return;
+        case "4":
+          document.querySelector("#teaPartySize").innerHTML = "Extra Large (7-8 Participants)";
+          return;
       default:
         console.log("bug in changeSliderLabel");
     }
@@ -421,10 +408,10 @@ var resizePizzas = function(size) {
 
   changeSliderLabel(size);
 
-   // Returns the size difference to change a pizza element from one size to another. Called by changePizzaSlices(size).
+   // Returns the size difference to change a TeaParty element from one size to another. Called by changeTeaPartySlices(size).
   function determineDx (elem, size) {
     var oldWidth = elem.offsetWidth;
-    var windowWidth = document.querySelector("#randomPizzas").offsetWidth;
+    var windowWidth = document.querySelector("#randomTeaParty").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
     // TODO: change to 3 sizes? no more xl?
@@ -432,11 +419,13 @@ var resizePizzas = function(size) {
     function sizeSwitcher (size) {
       switch(size) {
         case "1":
-          return 0.25;
+            return 0.25;
         case "2":
-          return 0.3333;
+            return 0.3333;
         case "3":
-          return 0.5;
+            return 0.5;
+        case "4":
+            return 0.6666;
         default:
           console.log("bug in sizeSwitcher");
       }
@@ -448,43 +437,43 @@ var resizePizzas = function(size) {
     return dx;
   }
 
-  // Iterates through pizza elements on the page and changes their widths
-  function changePizzaSizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomPizzaContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomPizzaContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+  // Iterates through TeaParty elements on the page and changes their widths
+  function changeTeaPartySizes(size) {
+    for (var i = 0; i < document.querySelectorAll(".randomTeaPartyContainer").length; i++) {
+      var dx = determineDx(document.querySelectorAll(".randomTeaPartyContainer")[i], size);
+      var newwidth = (document.querySelectorAll(".randomTeaPartyContainer")[i].offsetWidth + dx) + 'px';
+      document.querySelectorAll(".randomTeaPartyContainer")[i].style.width = newwidth;
     }
   }
 
-  changePizzaSizes(size);
+  changeTeaPartySizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
-  window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
-  var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
-  console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
+  window.performance.measure("measure_tea-party_resize", "mark_start_resize", "mark_end_resize");
+  var timeToResize = window.performance.getEntriesByName("measure_tea-party_resize");
+  console.log("Time to resize tea-party: " + timeToResize[0].duration + "ms");
 };
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
-// This for-loop actually creates and appends all of the pizzas when the page loads
+// This for-loop actually creates and appends all of the TeaPartys when the page loads
 for (var i = 2; i < 100; i++) {
-  var pizzasDiv = document.getElementById("randomPizzas");
-  pizzasDiv.appendChild(pizzaElementGenerator(i));
+  var teaPartyDiv = document.getElementById("randomTeaParty");
+  teaPartyDiv.appendChild(teaPartyElementGenerator(i));
 }
 
-// User Timing API again. These measurements tell you how long it took to generate the initial pizzas
+// User Timing API again. These measurements tell you how long it took to generate the initial TeaPartys
 window.performance.mark("mark_end_generating");
-window.performance.measure("measure_pizza_generation", "mark_start_generating", "mark_end_generating");
-var timeToGenerate = window.performance.getEntriesByName("measure_pizza_generation");
-console.log("Time to generate pizzas on load: " + timeToGenerate[0].duration + "ms");
+window.performance.measure("measure_tea-party_generation", "mark_start_generating", "mark_end_generating");
+var timeToGenerate = window.performance.getEntriesByName("measure_tea-party_generation");
+console.log("Time to generate tea parties on load: " + timeToGenerate[0].duration + "ms");
 
-// Iterator for number of times the pizzas in the background have scrolled.
+// Iterator for number of times the TeaPartys in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
 var frame = 0;
 
-// Logs the average amount of time per 10 frames needed to move the sliding background pizzas on scroll.
+// Logs the average amount of time per 10 frames needed to move the sliding background TeaPartys on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
   var numberOfEntries = times.length;
   var sum = 0;
@@ -494,10 +483,10 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// The following code for sliding background pizzas was pulled from Ilya's demo found at:
+// The following code for sliding background TeaPartys was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-// Moves the sliding background pizzas based on scroll position
+// Moves the sliding background TeaPartys based on scroll position
 function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
@@ -521,19 +510,19 @@ function updatePositions() {
 // runs updatePositions on scroll
 window.addEventListener('scroll', updatePositions);
 
-// Generates the sliding pizzas when the page loads.
+// Generates the sliding Tea Pots when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8;
   var s = 256;
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "images/pizza.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
+    elem.className = 'mover responsive';
+    elem.src = "img/sweet-tea-pot.png";
+    elem.style.height = "10rem";
+    elem.style.width = "10rem";
     elem.basicLeft = (i % cols) * s;
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingPizzas1").appendChild(elem);
+    document.querySelector("#movingTeapot").appendChild(elem);
   }
   updatePositions();
 });
