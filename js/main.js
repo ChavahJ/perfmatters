@@ -524,5 +524,7 @@ document.addEventListener('DOMContentLoaded', function() {
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
     document.querySelector("#movingTeapot").appendChild(elem);
   }
-  updatePositions();
+  requestAnimationFrame(updatePositions);
 });
+
+ requestAnimationFrame(updatePositions);
