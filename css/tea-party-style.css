@@ -1,3 +1,74 @@
+html { font-size: 62.5%; }
+
+body {
+    margin: 0;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-family: 'Alice', serif;
+ }
+
+ul {
+    list-style: none;
+    margin: 0;
+}
+
+li {
+    font-size: 1.4rem;
+}
+
+.container {
+    background-color: rgba(210, 213, 180, 0.75);
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+
+input {
+  background: #d2d5b4;
+  font-size: 1.75rem;
+}
+
+form {
+  display: inline-block;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mover {
+  position: fixed;
+  z-index: -1;
+}
+
+.randomTeaPartyContainer {
+  float: left;
+  display: flex;
+}
+
+.randomTeaPartyContainer:after {
+  content: "";
+  display: table;
+  clear:both;
+}
+
 /*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
@@ -10,39 +81,20 @@
  */
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
 
-
 img {
   vertical-align: middle;
 }
+
 .img-responsive {
   display: block;
   width: 100% \9;
   max-width: 100%;
   height: auto;
 }
-.img-rounded {
-  border-radius: 6px;
-}
-.img-thumbnail {
-  padding: 4px;
-  line-height: 1.42857143;
-  background-color: #ffffff;
-  border: 1px solid #dddddd;
-  border-radius: 4px;
-  -webkit-transition: all 0.2s ease-in-out;
-  -o-transition: all 0.2s ease-in-out;
-  transition: all 0.2s ease-in-out;
-  display: inline-block;
-  width: 100% \9;
-  max-width: 100%;
-  height: auto;
-}
-.img-circle {
-  border-radius: 50%;
-}
+
 hr {
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   border: 0;
   border-top: 1px solid #eeeeee;
 }
@@ -65,33 +117,7 @@ hr {
   overflow: visible;
   clip: auto;
 }
-.container {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
-.container-fluid {
-  margin-right: auto;
-  margin-left: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-}
+
 .row {
   margin-left: -15px;
   margin-right: -15px;
@@ -736,8 +762,6 @@ hr {
 .clearfix:after,
 .container:before,
 .container:after,
-.container-fluid:before,
-.container-fluid:after,
 .row:before,
 .row:after {
   content: " ";
@@ -745,7 +769,6 @@ hr {
 }
 .clearfix:after,
 .container:after,
-.container-fluid:after,
 .row:after {
   clear: both;
 }
