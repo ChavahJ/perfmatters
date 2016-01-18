@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="This is my fourth project for Udacity Front-End Development Track">
     <title>Alice Wonderer | Front-End Developer</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/print.css" rel="stylesheet" media="print">
 
     <style>
@@ -39,7 +37,7 @@
             float: left;
         }
 
-        .img-card { width: 100%; }
+        .img-card { width: 25%; float: left; margin-right: 2rem;}
 
         header,
         footer,
@@ -49,6 +47,19 @@
           margin-right: auto;
           margin-left: auto;
           max-width: 45rem;
+        }
+
+        .row {
+          margin-left: -1.5rem;
+          margin-right: -1.5rem;
+        }
+        .row:before,
+        .row:after {
+          content: " ";
+          display: table;
+        }
+        .row:after {
+          clear: both;
         }
 
         header { color: #ff0000; }
@@ -120,18 +131,17 @@
         </div><!-- end of content -->
     </div> <!-- end of container -->
 
-    <footer>
-        <div class="row small">
-            <div class="col-xs-6">
-                <p>&copy; AliceW 2016</p>
-            </div>
-            <div class="col-xs-6 text-right" id="crp-stats">
-                <!-- populated by perfmatters.js -->
-            </div>
-    </footer>
-  </body>
+        <footer>
+            <div class="row small">
+                <div class="col-xs-6">
+                    <p>&copy; AliceW 2016</p>
+                </div>
+                <div class="col-xs-6 text-right" id="crp-stats">
+                    <!-- populated by perfmatters.js -->
+                </div>
+        </footer>
+    </body>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
     <script>
       WebFont.load({
         google: {
@@ -148,6 +158,7 @@
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
     </script>
+    <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
     <script async src="http://www.google-analytics.com/analytics.js"></script>
     <script async src="js/perfmatters.js"></script>
 

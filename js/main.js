@@ -360,19 +360,17 @@ var teaPartyElementGenerator = function(i) {
   teaPartyDescriptionContainer = document.createElement("div");
 
   teaPartyContainer.classList.add("randomTeaPartyContainer");
-  teaPartyContainer.style.width = "33.33%"; //the default size is medium and each tea party container will take up 1/3 of the canvas
-  teaPartyContainer.style.max-height = "45rem"; //sets a maximum height for the tea party containers -- set at max-height to adjust for different sizes
   teaPartyContainer.id = "teaParty" + i;                // gives each tea party element a unique id
-  teaPartyImageContainer.classList.add("col-xs-2 col-sm-4 col-md-6"); //makes the image take up half the width of the tea party container itself
+  teaPartyImageContainer.classList.add("col-md-6"); //makes the image take up half the width of the tea party container itself
 
-  teaPartyImage.src = "img/sweet-tea-left.png";
-  teaPartyImage.classList.add("img-responsive"); //ensures the image is responsive for different devices and viewports
+  teaPartyImage.src = "img/red-tea-pot-r.png";
+  teaPartyImage.classList.add("img-tea"); //ensures the image is responsive for different devices and viewports
   teaPartyImageContainer.appendChild(teaPartyImage); //appends the image to the IMG div created above
   teaPartyContainer.appendChild(teaPartyImageContainer); //appends the IMG div to the tea party container div
 
-  teaPartyDescriptionContainer.classList.add("col-xs-10 col-sm-8 col-md-6"); //makes the tea party description take up half the width of the tea party container
+  teaPartyDescriptionContainer.classList.add("col-md-6"); //makes the tea party description take up half the width of the tea party container
 
-  teaPartyName = document.createElement("h4"); //adds an h4 tag to contain the title of the tea party
+  teaPartyName = document.createElement("h3"); //adds an h4 tag to contain the title of the tea party
   teaPartyName.innerHTML = randomName(); //Invoking the function for creating a random name from the arrays adjectives and nouns
   teaPartyDescriptionContainer.appendChild(teaPartyName); //appends the tea party name to the description container
 
@@ -384,6 +382,7 @@ var teaPartyElementGenerator = function(i) {
   return teaPartyContainer; //generates the container DIV with all of its content and img
 };
 
+//START RESIZING OF TEA PARTIES
 // resizeTeaParty(size) is called when the slider in the "Our Tea Parties" section of the website moves.
 var resizeTeaParty = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
@@ -400,9 +399,6 @@ var resizeTeaParty = function(size) {
         case "3":
         document.querySelector("#teaPartySize").innerHTML = "Large (5-6 Participants)";
         return;
-        case "4":
-          document.querySelector("#teaPartySize").innerHTML = "Extra Large (7-8 Participants)";
-          return;
       default:
         console.log("bug in changeSliderLabel");
     }
@@ -425,8 +421,6 @@ var resizeTeaParty = function(size) {
             return 0.3333;
         case "3":
             return 0.5;
-        case "4":
-            return 0.6666;
         default:
           console.log("bug in sizeSwitcher");
       }
@@ -438,29 +432,19 @@ var resizeTeaParty = function(size) {
     return dx;
   }
 
-  // Iterates through Tea Party elements on the page and changes their widths
-  function changeTeaPartySizes(size) {
-    switch(size) {
-      case "1":
-          return 0.25;
-      case "2":
-          return 0.3333;
-      case "3":
-          return 0.5;
-      case "4":
-          return 0.6666;
-      default:
-        console.log("bug in sizeSwitcher");
-    }
-  }
+  var teaPartyContainer = document.querySelectorAll(".randomTeaPartyContainer");
+  var teaPartyContainerLength = teaPartyContainer.length;
 
-  var randomTeaParty = document.querySelectorAll(".randomTeaPartyContainer");
+   // Iterates through tea party divs on the page and changes their widths
+    function changeTeaPartySizes(size) {
+        var dx = determineDx(teaPartyContainer[0], size) //moving variables out of the loop
+        var newwidth = (teaPartyContainer[0].offsetWidth + dx) + 'px';      // the width of the container is set
+     for (var i = 0; i < teaPartyContainer.length; i++) {
+       teaPartyContainer[i].style.width = newwidth;
+     }
+   }
 
-  for (var i = 0; i < randomTeaParty.length; i++) {
-      randomTeaParty[i].style.width = newwidth + "%";
-    }
-
-  changeTeaPartySizes(size);
+   changeTeaPartySizes(size);
 
   // User Timing API is awesome
   window.performance.mark("mark_end_resize");
@@ -469,6 +453,7 @@ var resizeTeaParty = function(size) {
   console.log("Time to resize tea-party: " + timeToResize[0].duration + "ms");
 };
 
+//START OF TEA PARTY GENERATOR
 window.performance.mark("mark_start_generating"); // collect timing data when tea parties are loading
 
 // This for-loop actually CREATES and APPENDS all of the Tea Parties when the page loads
@@ -483,7 +468,7 @@ window.performance.measure("measure_tea-party_generation", "mark_start_generatin
 var timeToGenerate = window.performance.getEntriesByName("measure_tea-party_generation");
 console.log("Time to generate tea parties on load: " + timeToGenerate[0].duration + "ms");
 
-// Iterator for number of times the TeaPartys in the background have scrolled.
+// Iterator for number of times the Tea Pots in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
 var frame = 0;
 
@@ -498,22 +483,84 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
     console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
+// // The following code for sliding background pizzas was pulled from Ilya's demo found at:
+// // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
+//
+// // Moves the sliding background pizzas based on scroll position
+// function updatePositions() {
+//   frame++;
+//   window.performance.mark("mark_start_frame");
+//
+//   var items = document.querySelectorAll('.mover');
+//   for (var i = 0; i < items.length; i++) {
+//     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+//     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+//   }
+//
+//   // User Timing API to the rescue again. Seriously, it's worth learning.
+//   // Super easy to create custom metrics.
+//   window.performance.mark("mark_end_frame");
+//   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+//   if (frame % 10 === 0) {
+//     var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+//     logAverageFrame(timesToUpdatePosition);
+//   }
+// }
+//
+// // runs updatePositions on scroll
+// window.addEventListener('scroll', updatePositions);
+//
+// // Generates the sliding pizzas when the page loads.
+// document.addEventListener('DOMContentLoaded', function() {
+//   var cols = 8;
+//   var s = 256;
+//   for (var i = 0; i < 200; i++) {
+//     var elem = document.createElement('img');
+//     elem.className = 'mover';
+//     elem.src = "img/red-tea-pot.png";
+//     elem.style.height = "100px";
+//     elem.style.width = "73.333px";
+//     elem.style.left = elem.basicLeft + 'px'
+//     elem.basicLeft = (i % cols) * s;
+//     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+//     document.querySelector("#movingTeapots1").appendChild(elem);
+//   }
+//   updatePositions();
+// });
+
+
 // The following code for sliding background TeaPartys was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-
 // MOVES the sliding background TeaPartys based on scroll position
-function updatePositions() {
-    frame++; //a variable to add a new frames
-    window.performance.mark("mark_start_frame"); //telling Timing API where to start measuring
 
-    var items = document.getElementsByClassName('mover'); //changed from a general CSS selector to a more specific CSS selector for optimization
-    for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+var scrolling = false;
+var scrollPosition = 0;
+function startScrolling() {
+    scrollPosition =  window.scrollY;
+    if (!scrolling) {
+        requestAnimationFrame(updatePositions);
+    }
+    scrolling = true;
+}
+
+
+function updatePositions() {
+    scrolling = false;
+    frame++; //increases the frame variable as defined above
+    window.performance.mark("mark_start_frame"); //telling Timing API where to start measuring
+    var items = document.getElementsByClassName('mover');
+    var moverLength = items.length;
+    var scrollTop = document.body.scrollTop;
+    var scrollPhase = scrollTop / 1250;
+
+    for (var i = 0; i < moverLength; i++) {
+        var phase = Math.sin(scrollPhase + (i % 5));
+        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
   // Super easy to create custom metrics.
+  //Is he getting paid to plug this API? Seriously.
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
   if (frame % 10 === 0) {
@@ -523,23 +570,64 @@ function updatePositions() {
 }
 
 // runs updatePositions on scroll
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', startScrolling);
 
-// Generates the sliding Tea Pots when the page loads.
+// Generates the sliding pizzas when the page loads.
 document.addEventListener('DOMContentLoaded', function() {
+
   var cols = 8;
   var s = 256;
-  for (var i = 0; i < 200; i++) {
-    var elem = document.createElement('img');
-    elem.className = 'mover responsive';
-    elem.src = "img/sweet-tea-pot.png";
-    elem.style.height = "10rem";
-    elem.style.width = "10rem";
-    elem.basicLeft = (i % cols) * s;
+  var viewportHeight = window.innerHeight;
+  var pizzasAppend = document.getElementById("movingTeapots1");
+
+  var rows = Math.floor(viewportHeight / 256) + 1;
+  var backgroundTeaPots = cols * rows;
+  var elem;
+
+  for (var i = 0; i < backgroundTeaPots; i++) {
+    elem = document.createElement('img');
+    elem.className = 'mover';
+    elem.src = "img/red-tea-pot.png";
+    elem.style.height = "100px";
+    elem.style.width = "73.333px";
+    elem.basicLeft = (i % cols) * s + 'px';
     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    document.querySelector("#movingTeapot").appendChild(elem);
+    pizzasAppend.appendChild(elem);
   }
-  requestAnimationFrame(updatePositions);
+  updatePositions();
 });
 
- requestAnimationFrame(updatePositions);
+// // Generates the sliding pizzas when the page loads.
+// document.addEventListener('DOMContentLoaded', function() {
+//   var cols = 8;
+//   var s = 256;
+//   for (var i = 0; i < 100; i++) {
+//     var elem = document.createElement('img');
+//     elem.className = 'mover';
+//     elem.src = "img/red-tea-pot.png";
+//     elem.basicLeft = (i % cols) * s;
+//     elem.style.top = (Math.floor(i / cols) * s) + 'px';
+//     document.querySelector("#movingTeapots1").appendChild(elem);
+//   }
+//   updatePositions();
+// });
+
+// // Generates the sliding Tea Pots when the page loads.
+// document.addEventListener('DOMContentLoaded', function() {
+//     var teaPotSpan;
+//     var teaPotImg;
+//     var cols = 8;
+//     var s = 256;
+//     for (var i = 0; i < 100; i++) {
+//         teaPotSpan = document.createElement("span");
+//         teaPotImg = document.createElement('img');
+//         teaPotSpan.className = 'mover';
+//         teaPotSpan.basicLeft = (i % cols) * s;
+//         teaPotSpan.style.top = (Math.floor(i / cols) * s) + 'px';
+//         teaPotImg.src = "img/red-tea-pot.png";
+//         teaPotSpan.appendChild(teaPotImg);
+//         document.querySelector("#movingTeapots1").appendChild(teaPotSpan);
+//   }
+//   updatePositions();
+//   console.log("I am updating positions.")
+// });
