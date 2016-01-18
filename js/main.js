@@ -6,7 +6,7 @@ http://www.html5rocks.com/en/tutorials/webperformance/usertiming/
 */
 
 // As you may have realized, this website randomly generates Tea Parties.
-// Here are arrays of all possible Tea Party ingredients.
+// Here are arrays of all possible Tea Party INGREDIENTS.
 var teaPartyIngredients = {};
 teaPartyIngredients.tea = [
   "Earl Grey Tea",
@@ -14,8 +14,8 @@ teaPartyIngredients.tea = [
   "Red Tea",
   "White Tea",
   "Oolang Tea",
-  "Sencha Tea",
-  "Matcha Tea",
+  "Strong Black Tea",
+  "Weak Black Tea",
   "Black Dragon Tea",
   "Keemun Tea",
   "Yunnan Tea",
@@ -83,7 +83,7 @@ teaPartyIngredients.sandwichInside = [
   "Swiss Cheese",
   "Cucumbers",
   "Mozzarella Cheese",
-  "Parmesean Cheese",
+  "Humous",
   "Sun Dried Tomatoes",
   "Gouda Cheese",
   "Muenster Cheese",
@@ -104,10 +104,10 @@ teaPartyIngredients.sandwichInside = [
   "Lettuce",
   "Cream Cheese",
   "Provolone Cheese",
-  "Butter",
   "Roquefort Cheese",
   "Romano Cheese",
   "Ricotta Cheese",
+  "Roasted Eggplant",
   "Smoked Gouda"
 ];
 teaPartyIngredients.condiment = [
@@ -115,6 +115,8 @@ teaPartyIngredients.condiment = [
   "Ketchup",
   "Mustard",
   "Pesto",
+  "Butter",
+  "Margarine",
   "Honey"
 ];
 teaPartyIngredients.bread = [
@@ -123,6 +125,7 @@ teaPartyIngredients.bread = [
   "Whole Wheat Bread",
   "Rye Bread",
   "Flat Bread",
+  "Gluten-Free Rolls",
   "Spelt Rolls"
 ];
 
@@ -132,7 +135,7 @@ String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
 
-// Pulls adjective out of array using random number sent from generator
+// Pulls adjective out of a two dimensional array using random number sent from generator
 function getAdj(x){
   switch(x) {
     case "dark":
@@ -196,7 +199,7 @@ function getAdj(x){
   }
 }
 
-// Pulls noun out of array using random number sent from generator
+// Pulls noun out of a two dimensional array using random number sent from generator
 function getNoun(y) {
   switch(y) {
     case "animals":
@@ -269,7 +272,7 @@ function getNoun(y) {
 var adjectives = ["dark", "color", "whimsical", "shiny", "noise", "apocalyptic", "insulting", "praise", "scientific"];  // types of adjectives for tea party titles
 var nouns = ["animals", "everyday", "fantasy", "gross", "horror", "jewelry", "places", "scifi"];                        // types of nouns for tea party titles
 
-// Generates random numbers for getAdj and getNoun functions and returns a new tea party name
+// Generates random numbers for getAdj and getNoun functions and returns a new tea party NAME
 function generator(adj, noun) {
   var adjectives = getAdj(adj);
   var nouns = getNoun(noun);
@@ -286,7 +289,7 @@ function randomName() {
   return generator(adjectives[randomNumberAdj], nouns[randomNumberNoun]);
 }
 
-// These functions return a string of a random ingredient from each respective category of ingredients.
+// These functions return a string of a random ingredients from each respective category of INGREDIENTS.
 var selectRandomTea = function() {
   var randomTea = teaPartyIngredients.tea[Math.floor((Math.random() * teaPartyIngredients.tea.length))];
   return randomTea;
@@ -307,7 +310,7 @@ var selectRandomCondiment = function() {
   return randomCondiment;
 };
 
-var selectrandomBread = function() {
+var selectRandomBread = function() {
   var randomBread = teaPartyIngredients.bread[Math.floor((Math.random() * teaPartyIngredients.bread.length))];
   return randomBread;
 };
@@ -320,9 +323,9 @@ var ingredientItemizer = function(string) {
 var makeRandomTeaParty = function() {
   var teaParty = "";
 
-  var numberOfTeas = Math.floor((Math.random() * 2) + 1);
-  var numberOfCakes = Math.floor((Math.random() * 3));
-  var numberOfInsides = Math.floor((Math.random() * 4) + 1);
+  var numberOfTeas = Math.floor((Math.random() * 2) + 1); //Generates 1-2 teas per party
+  var numberOfCakes = Math.floor((Math.random() * 3)); //Generates 0-3 cakes per party
+  var numberOfInsides = Math.floor((Math.random() * 4) + 1); //Generates 1-4 sandwich ingredients per party
 
   for (var i = 0; i < numberOfTeas; i++) {
     teaParty = teaParty + ingredientItemizer(selectRandomTea());
@@ -336,20 +339,20 @@ var makeRandomTeaParty = function() {
     teaParty = teaParty + ingredientItemizer(selectRandomSandwichInside());
   }
 
-  teaParty = teaParty + ingredientItemizer(selectRandomCondiment());
-  teaParty = teaParty + ingredientItemizer(selectrandomBread());
+  teaParty = teaParty + ingredientItemizer(selectRandomCondiment()); //picks one random condiment per party
+  teaParty = teaParty + ingredientItemizer(selectRandomBread()); //picks one randome type of bread for the sandwiches of the party
 
   return teaParty;
 };
 
 // returns a DOM element for each TeaParty
 var teaPartyElementGenerator = function(i) {
-  var teaPartyContainer,             // contains tea party title, image and list of ingredients
-      teaPartyImageContainer,        // contains the tea pot image
-      teaPartyImage,                 // the tea pot image itself
-      teaPartyDescriptionContainer,  // contains the tea party title and list of ingredients
-      teaPartyName,                  // the tea party name itself
-      ul;                         // the list of ingredients
+  var teaPartyContainer,             // creates a DIV to contain all the information about a single tea party
+      teaPartyImageContainer,        // creates a DIV for the tea pot IMG
+      teaPartyImage,                 // the tea pot IMG
+      teaPartyDescriptionContainer,  // creates a DIV for the TITLE and INGREDIENTS
+      teaPartyName,                  // the tea party TITLE
+      ul;                           // the list of tea party INGREDIENTS
 
   teaPartyContainer  = document.createElement("div");
   teaPartyImageContainer = document.createElement("div");
@@ -357,36 +360,35 @@ var teaPartyElementGenerator = function(i) {
   teaPartyDescriptionContainer = document.createElement("div");
 
   teaPartyContainer.classList.add("randomTeaPartyContainer");
-  teaPartyContainer.style.width = "33.33%";
-  teaPartyContainer.style.height = "35rem";
+  teaPartyContainer.style.width = "33.33%"; //the default size is medium and each tea party container will take up 1/3 of the canvas
+  teaPartyContainer.style.max-height = "45rem"; //sets a maximum height for the tea party containers -- set at max-height to adjust for different sizes
   teaPartyContainer.id = "teaParty" + i;                // gives each tea party element a unique id
-  teaPartyImageContainer.classList.add("col-md-6");
+  teaPartyImageContainer.classList.add("col-xs-2 col-sm-4 col-md-6"); //makes the image take up half the width of the tea party container itself
 
   teaPartyImage.src = "img/sweet-tea-left.png";
-  teaPartyImage.classList.add("img-responsive");
-  teaPartyImageContainer.appendChild(teaPartyImage);
-  teaPartyContainer.appendChild(teaPartyImageContainer);
+  teaPartyImage.classList.add("img-responsive"); //ensures the image is responsive for different devices and viewports
+  teaPartyImageContainer.appendChild(teaPartyImage); //appends the image to the IMG div created above
+  teaPartyContainer.appendChild(teaPartyImageContainer); //appends the IMG div to the tea party container div
 
+  teaPartyDescriptionContainer.classList.add("col-xs-10 col-sm-8 col-md-6"); //makes the tea party description take up half the width of the tea party container
 
-  teaPartyDescriptionContainer.classList.add("col-md-6");
+  teaPartyName = document.createElement("h4"); //adds an h4 tag to contain the title of the tea party
+  teaPartyName.innerHTML = randomName(); //Invoking the function for creating a random name from the arrays adjectives and nouns
+  teaPartyDescriptionContainer.appendChild(teaPartyName); //appends the tea party name to the description container
 
-  teaPartyName = document.createElement("h4");
-  teaPartyName.innerHTML = randomName();
-  teaPartyDescriptionContainer.appendChild(teaPartyName);
+  ul = document.createElement("ul"); //creating an unordered list for the ingredients
+  ul.innerHTML = makeRandomTeaParty(); //Invoking the function to generate a list of ingredients
+  teaPartyDescriptionContainer.appendChild(ul); //appending the list items to the unordered list
+  teaPartyContainer.appendChild(teaPartyDescriptionContainer); //appending the entire list to the description container
 
-  ul = document.createElement("ul");
-  ul.innerHTML = makeRandomTeaParty();
-  teaPartyDescriptionContainer.appendChild(ul);
-  teaPartyContainer.appendChild(teaPartyDescriptionContainer);
-
-  return teaPartyContainer;
+  return teaPartyContainer; //generates the container DIV with all of its content and img
 };
 
 // resizeTeaParty(size) is called when the slider in the "Our Tea Parties" section of the website moves.
 var resizeTeaParty = function(size) {
   window.performance.mark("mark_start_resize");   // User Timing API function
 
-  // Changes the value for the size of the TeaParty above the slider
+  // Changes the value for the size of the Tea Party above the slider
   function changeSliderLabel(size) {
     switch(size) {
         case "1":
@@ -414,7 +416,6 @@ var resizeTeaParty = function(size) {
     var windowWidth = document.querySelector("#randomTeaParty").offsetWidth;
     var oldSize = oldWidth / windowWidth;
 
-    // TODO: change to 3 sizes? no more xl?
     // Changes the slider value to a percent width
     function sizeSwitcher (size) {
       switch(size) {
@@ -437,14 +438,27 @@ var resizeTeaParty = function(size) {
     return dx;
   }
 
-  // Iterates through TeaParty elements on the page and changes their widths
+  // Iterates through Tea Party elements on the page and changes their widths
   function changeTeaPartySizes(size) {
-    for (var i = 0; i < document.querySelectorAll(".randomTeaPartyContainer").length; i++) {
-      var dx = determineDx(document.querySelectorAll(".randomTeaPartyContainer")[i], size);
-      var newwidth = (document.querySelectorAll(".randomTeaPartyContainer")[i].offsetWidth + dx) + 'px';
-      document.querySelectorAll(".randomTeaPartyContainer")[i].style.width = newwidth;
+    switch(size) {
+      case "1":
+          return 0.25;
+      case "2":
+          return 0.3333;
+      case "3":
+          return 0.5;
+      case "4":
+          return 0.6666;
+      default:
+        console.log("bug in sizeSwitcher");
     }
   }
+
+  var randomTeaParty = document.querySelectorAll(".randomTeaPartyContainer");
+
+  for (var i = 0; i < randomTeaParty.length; i++) {
+      randomTeaParty[i].style.width = newwidth + "%";
+    }
 
   changeTeaPartySizes(size);
 
@@ -455,10 +469,10 @@ var resizeTeaParty = function(size) {
   console.log("Time to resize tea-party: " + timeToResize[0].duration + "ms");
 };
 
-window.performance.mark("mark_start_generating"); // collect timing data
+window.performance.mark("mark_start_generating"); // collect timing data when tea parties are loading
 
-// This for-loop actually creates and appends all of the TeaPartys when the page loads
-for (var i = 2; i < 100; i++) {
+// This for-loop actually CREATES and APPENDS all of the Tea Parties when the page loads
+for (var i = 3; i < 100; i++) {
   var teaPartyDiv = document.getElementById("randomTeaParty");
   teaPartyDiv.appendChild(teaPartyElementGenerator(i));
 }
@@ -475,24 +489,25 @@ var frame = 0;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background TeaPartys on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
-  var numberOfEntries = times.length;
-  var sum = 0;
-  for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
+    var numberOfEntries = times.length;
+    var sum = 0;
+    for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
     sum = sum + times[i].duration;
-  }
-  console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
+    }
+
+    console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
 // The following code for sliding background TeaPartys was pulled from Ilya's demo found at:
 // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
 
-// Moves the sliding background TeaPartys based on scroll position
+// MOVES the sliding background TeaPartys based on scroll position
 function updatePositions() {
-  frame++;
-  window.performance.mark("mark_start_frame");
+    frame++; //a variable to add a new frames
+    window.performance.mark("mark_start_frame"); //telling Timing API where to start measuring
 
-  var items = document.querySelectorAll('.mover');
-  for (var i = 0; i < items.length; i++) {
+    var items = document.getElementsByClassName('mover'); //changed from a general CSS selector to a more specific CSS selector for optimization
+    for (var i = 0; i < items.length; i++) {
     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
