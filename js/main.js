@@ -360,19 +360,17 @@ var teaPartyElementGenerator = function(i) {
   teaPartyDescriptionContainer = document.createElement("div");
 
   teaPartyContainer.classList.add("randomTeaPartyContainer");
-  teaPartyContainer.style.width = "32%"; //the default size is medium and each tea party container will take up 1/3 of the canvas
-  teaPartyContainer.style.height = "40rem"; //sets a height for the tea party containers
   teaPartyContainer.id = "teaParty" + i;                // gives each tea party element a unique id
   teaPartyImageContainer.classList.add("col-md-6"); //makes the image take up half the width of the tea party container itself
 
   teaPartyImage.src = "img/red-tea-pot-r.png";
-  teaPartyImage.classList.add("img-responsive"); //ensures the image is responsive for different devices and viewports
+  teaPartyImage.classList.add("img-tea"); //ensures the image is responsive for different devices and viewports
   teaPartyImageContainer.appendChild(teaPartyImage); //appends the image to the IMG div created above
   teaPartyContainer.appendChild(teaPartyImageContainer); //appends the IMG div to the tea party container div
 
   teaPartyDescriptionContainer.classList.add("col-md-6"); //makes the tea party description take up half the width of the tea party container
 
-  teaPartyName = document.createElement("h4"); //adds an h4 tag to contain the title of the tea party
+  teaPartyName = document.createElement("h3"); //adds an h4 tag to contain the title of the tea party
   teaPartyName.innerHTML = randomName(); //Invoking the function for creating a random name from the arrays adjectives and nouns
   teaPartyDescriptionContainer.appendChild(teaPartyName); //appends the tea party name to the description container
 
