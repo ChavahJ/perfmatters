@@ -360,17 +360,17 @@ var teaPartyElementGenerator = function(i) {
   teaPartyDescriptionContainer = document.createElement("div");
 
   teaPartyContainer.classList.add("randomTeaPartyContainer");
-  teaPartyContainer.style.width = "33.33%"; //the default size is medium and each tea party container will take up 1/3 of the canvas
-  teaPartyContainer.style.max-height = "45rem"; //sets a maximum height for the tea party containers -- set at max-height to adjust for different sizes
+  teaPartyContainer.style.width = "32%"; //the default size is medium and each tea party container will take up 1/3 of the canvas
+  teaPartyContainer.style.height = "40rem"; //sets a height for the tea party containers
   teaPartyContainer.id = "teaParty" + i;                // gives each tea party element a unique id
-  teaPartyImageContainer.classList.add("col-xs-2 col-sm-4 col-md-6"); //makes the image take up half the width of the tea party container itself
+  teaPartyImageContainer.classList.add("col-md-6"); //makes the image take up half the width of the tea party container itself
 
-  teaPartyImage.src = "img/sweet-tea-left.png";
+  teaPartyImage.src = "img/red-tea-pot-r.png";
   teaPartyImage.classList.add("img-responsive"); //ensures the image is responsive for different devices and viewports
   teaPartyImageContainer.appendChild(teaPartyImage); //appends the image to the IMG div created above
   teaPartyContainer.appendChild(teaPartyImageContainer); //appends the IMG div to the tea party container div
 
-  teaPartyDescriptionContainer.classList.add("col-xs-10 col-sm-8 col-md-6"); //makes the tea party description take up half the width of the tea party container
+  teaPartyDescriptionContainer.classList.add("col-md-6"); //makes the tea party description take up half the width of the tea party container
 
   teaPartyName = document.createElement("h4"); //adds an h4 tag to contain the title of the tea party
   teaPartyName.innerHTML = randomName(); //Invoking the function for creating a random name from the arrays adjectives and nouns
@@ -442,22 +442,26 @@ var resizeTeaParty = function(size) {
   function changeTeaPartySizes(size) {
     switch(size) {
       case "1":
-          return 0.25;
+          newwidth = 0.25;
+          break;
       case "2":
-          return 0.3333;
+          newwidth = 0.3333;
+          break;
       case "3":
-          return 0.5;
+          newwidth = 0.5;
+          break;
       case "4":
-          return 0.6666;
+          newwidth = 0.6666;
+          break;
       default:
         console.log("bug in sizeSwitcher");
     }
   }
 
   var randomTeaParty = document.querySelectorAll(".randomTeaPartyContainer");
-
+  var newWidth;
   for (var i = 0; i < randomTeaParty.length; i++) {
-      randomTeaParty[i].style.width = newwidth + "%";
+      randomTeaParty[i].style.width = newWidth + "%";
     }
 
   changeTeaPartySizes(size);
@@ -532,7 +536,7 @@ document.addEventListener('DOMContentLoaded', function() {
   for (var i = 0; i < 200; i++) {
     var elem = document.createElement('img');
     elem.className = 'mover responsive';
-    elem.src = "img/sweet-tea-pot.png";
+    elem.src = "img/red-tea-pot.png";
     elem.style.height = "10rem";
     elem.style.width = "10rem";
     elem.basicLeft = (i % cols) * s;
