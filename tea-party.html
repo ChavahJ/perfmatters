@@ -114,7 +114,7 @@ footer { margin: 2rem 0; padding: 2rem 0; border-top: 1px solid red; }
     <p>1864 Carroll Road<br>Oxford, CA<br>93015<br>805-555-5555</p>
 </div>
 <div class="col-xs-6">
-    <h3>Through the Looking Glass</h3>
+    <h3>Looking Glass</h3>
     <p>1871 Dodgson Way<br>New York, NY<br>00100<br>555-555-5555</p>
 </div>
 </div><!-- end of locations' row -->
@@ -197,6 +197,7 @@ footer { margin: 2rem 0; padding: 2rem 0; border-top: 1px solid red; }
 
 <script async type="text/javascript" src="js/main.js"></script>
 <script>
+
 var frame = 0;
 
 // Logs the average amount of time per 10 frames needed to move the sliding background TeaPartys on scroll.
@@ -211,41 +212,51 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 }
 
 function updatePositions() {
-    frame++;
-    window.performance.mark("mark_start_frame");
-    var heavyScroll = !!document.querySelector('#movingTeapots1').checked;
-    var items = document.querySelectorAll('.mover');
-    var cachedScrollTop = document.body.scrollTop;
-    for (var i = 0; i < items.length; i++) {
-        var phase;
-        if (heavyScroll)
-            phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-        else
-            phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
-        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-    window.performance.mark("mark_end_frame");
-    window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-        if (frame % 10 === 0) {
-        var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-        logAverageFrame(timesToUpdatePosition);
-        }
-    }
+  frame++;
+
+  window.performance.mark("mark_start_frame");
+
+  var items = document.querySelectorAll('img.mover');
+
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+  }
+
+
+  window.performance.mark("mark_end_frame");
+  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+
+  if (frame % 10 === 0) {
+    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+    logAverageFrame(timesToUpdatePosition);
+  }
 }
 
 window.addEventListener('scroll', updatePositions);
+
 document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
-    for (var i = 0; i < 200; i++) {
+    var rowTop = 0;
+
+    for (var i = 0; i < 100; i++) {
+        rowTop = (Math.floor(i / cols) *s);
+            if (rowTop > Window.innerHeight) {
+                break;
+            }
+
         var el = document.createElement('img');
         el.className = 'mover';
         el.src = "img/red-tea-pot.png";
+        el.style.height = "7rem";
+        el.style.width = "10rem";
         el.basicLeft = (i % cols) * s;
         el.style.top = (Math.floor(i / cols) * s) + 'px';
-        document.body.appendChild(el);
+        document.querySelector("#movingTeapots1").appendChild(el);
     }
 
-    updatePositions();
+    requestAnimationFrame(updatePositions);
 });
 
 </script>
