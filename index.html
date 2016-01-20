@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="This is my fourth project for Udacity Front-End Development Track">
@@ -10,11 +10,7 @@
     <style>
         html { font-size: 62.5%; }
         body { margin: 0; font-size: 1.6rem; line-height: 2rem; }
-        body,
-        button,
-        input,
-        select,
-        textarea {font-family: "Alice", serif; }
+        body, button, input, select, textarea { font-family: "Alice", serif; }
         a { color: #ff0000; text-decoration: none; }
         a:visited { color: #b20000; }
         a:focus { outline: thin dotted; }
@@ -24,142 +20,104 @@
         a:focus { outline: thin dotted; }
         a:hover, a:active { color: #ff6666; outline: 0; }
         h3 { margin-top: 0; }
-        .img-article {
-            display: block;
-            margin: auto;
-        }
-
-        .img-profile {
-            max-width: 100%;
-            border-radius: 50%;
-            padding: .5rem;
-            margin-right: 2rem;
-            float: left;
-        }
-
-        .img-card { width: 25%; float: left; margin-right: 2rem;}
-
-        header,
-        footer,
-        .container {
-          padding-right: .9375rem;
-          padding-left: .9375rem;
-          margin-right: auto;
-          margin-left: auto;
-          max-width: 45rem;
-        }
-
-        .row {
-          margin-left: -1.5rem;
-          margin-right: -1.5rem;
-        }
-        .row:before,
-        .row:after {
-          content: " ";
-          display: table;
-        }
-        .row:after {
-          clear: both;
-        }
-
+        .img-article { display: block; margin: auto; }
+        .img-profile { max-width: 100%; border-radius: 50%; padding: .5rem; margin-right: 2rem; float: left; }
+        .img-card { width: 25%; float: left; margin-right: 2rem; }
+        header, footer, .container { padding-right: .9375rem; padding-left: .9375rem; margin-right: auto; margin-left: auto; max-width: 45rem; }
+        .row { margin-left: -1.5rem; margin-right: -1.5rem; }
+        .row:before, .row:after { content: " "; display: table; }
+        .row:after { clear: both; }
         header { color: #ff0000; }
-
-        .hero {
-            padding: 2rem;
-            background-color: #ddd;
-            font-size: 2rem;
-            border-bottom: 1px solid #434343;
-            border-top: 1px solid #434343;
-        }
+        .hero { padding: 2rem; background-color: #ddd; font-size: 2rem; border-bottom: 1px solid #434343; border-top: 1px solid #434343; }
         .card { margin: 2rem 0; }
         .content { padding: 1rem; }
-    </style>
-  </head>
+</style>
+</head>
 
-  <body>
-      <div class="container">
-        <header>
-            <div class="row">
-                    <a href="index.html "><img class="img-profile" src="img/alice.jpg"></a>
-                    <h1>Alice Wonderer</h1>
-                    <h4>Front-End Developer</h4>
-            </div>
-        </header>
-
-
-        <div class="hero">
-            <p><strong>'Wake up, Dormouse!'</strong> And they pinched it on both sides at once. The Dormouse slowly opened his eyes. 'I wasn't asleep,' he said in a hoarse, feeble voice: 'I heard every word you fellows were saying.'</p><p class="small">Contact me: <a href="mail:elynchav@gmail.com">downtherabbithole@email.com</a></p>
+<body>
+  <div class="container">
+    <header>
+        <div class="row">
+            <a href="index.html "><img class="img-profile" src="img/alice.jpg"></a>
+            <h1>Alice Wonderer</h1>
+            <h4>Front-End Developer</h4>
         </div>
+    </header>
 
-        <div class="content">
-            <div class="row card">
-                <div class="col-xs-4">
-                    <img class="img-card" src="img/tarts.jpg">
-                </div>
-                <div class="col-xs-8">
-                    <h3><a href="tarts.html">Who Stole the Tarts?</a></h3>
-                    <p>The judge, by the way, was the King.</p>
-                </div>
+
+    <div class="hero">
+        <p><strong>'Wake up, Dormouse!'</strong> And they pinched it on both sides at once. The Dormouse slowly opened his eyes. 'I wasn't asleep,' he said in a hoarse, feeble voice: 'I heard every word you fellows were saying.'</p><p class="small">Contact me: <a href="mail:elynchav@gmail.com">downtherabbithole@email.com</a></p>
+    </div>
+
+    <div class="content">
+        <div class="row card">
+            <div class="col-xs-4">
+                <img class="img-card" src="img/tarts.jpg">
             </div>
-            <div class="row card">
-                <div class="col-xs-4">
-                    <img class="img-card" src="img/caterpillar.jpg">
-                </div>
-                <div class="col-xs-8">
-                    <h3><a href="caterpillar.html">Advice from a Caterpillar</a></h3>
-                    <p>`Keep your temper,' said the Caterpillar.</p>
-                </div>
+            <div class="col-xs-8">
+                <h3><a href="tarts.html">Who Stole the Tarts?</a></h3>
+                <p>The judge, by the way, was the King.</p>
             </div>
-            <div class="row card">
-                <div class="col-xs-4">
-                    <img class="img-card" src="img/mouse-tears.jpg">
-                </div>
-                <div class="col-xs-8">
-                    <h3><a href="pool-of-tears.html">The Pool of Tears</a></h3>
-                    <p>`O Mouse, do you know the way out of this pool?'</p>
-                </div>
+        </div>
+        <div class="row card">
+            <div class="col-xs-4">
+                <img class="img-card" src="img/caterpillar.jpg">
             </div>
-            <div class="row card">
-                <div class="col-xs-4">
-                    <img class="img-card" src="img/mouse-teapot.jpg">
-                </div>
-                <div class="col-xs-8">
+            <div class="col-xs-8">
+                <h3><a href="caterpillar.html">Advice from a Caterpillar</a></h3>
+                <p>`Keep your temper,' said the Caterpillar.</p>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="col-xs-4">
+                <img class="img-card" src="img/mouse-tears.jpg">
+            </div>
+            <div class="col-xs-8">
+                <h3><a href="pool-of-tears.html">The Pool of Tears</a></h3>
+                <p>`O Mouse, do you know the way out of this pool?'</p>
+            </div>
+        </div>
+        <div class="row card">
+            <div class="col-xs-4">
+                <img class="img-card" src="img/mouse-teapot.jpg">
+            </div>
+            <div class="col-xs-8">
                 <h3><a href="tea-party.html">Crazy Tea Parties</a></h3>
                 <p>`It was the best butter,' the March Hare meekly replied.</p>
-                </div>
             </div>
-        </div><!-- end of content -->
-    </div> <!-- end of container -->
+        </div>
+    </div><!-- end of content -->
+</div> <!-- end of container -->
 
-        <footer>
-            <div class="row small">
-                <div class="col-xs-6">
-                    <p>&copy; AliceW 2016</p>
-                </div>
-                <div class="col-xs-6 text-right" id="crp-stats">
-                    <!-- populated by perfmatters.js -->
-                </div>
-        </footer>
-    </body>
+<footer>
+    <div class="row small">
+        <div class="col-xs-6">
+            <p>&copy; AliceW 2016</p>
+        </div>
+        <div class="col-xs-6 text-right" id="crp-stats">
+            <!-- populated by perfmatters.js -->
+        </div>
+    </footer>
+</body>
 
-    <script>
-      WebFont.load({
-        google: {
-          families: ['Alice']
-        }
-      });
-    </script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['Alice']
+  }
+});
+</script>
 
-    <script>
-      (function(w,g){w['GoogleAnalyticsObject']=g;
+<script>
+  (function(w,g){w['GoogleAnalyticsObject']=g;
       w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
 
       // TODO: replace with your Google Analytics profile ID.
       ga('create', 'UA-XXXX-Y');
       ga('send', 'pageview');
-    </script>
-    <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
-    <script async src="http://www.google-analytics.com/analytics.js"></script>
-    <script async src="js/perfmatters.js"></script>
+  </script>
+  <script async src="https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js"></script>
+  <script async src="http://www.google-analytics.com/analytics.js"></script>
+  <script async src="js/perfmatters.js"></script>
 
-</html>
+  </html>

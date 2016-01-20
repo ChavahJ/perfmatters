@@ -454,7 +454,7 @@ var resizeTeaParty = function(size) {
 };
 
 //START OF TEA PARTY GENERATOR
-window.performance.mark("mark_start_generating"); // collect timing data when tea parties are loading
+// window.performance.mark("mark_start_generating"); // collect timing data when tea parties are loading
 
 // This for-loop actually CREATES and APPENDS all of the Tea Parties when the page loads
 for (var i = 3; i < 100; i++) {
@@ -463,10 +463,10 @@ for (var i = 3; i < 100; i++) {
 }
 
 // User Timing API again. These measurements tell you how long it took to generate the initial TeaPartys
-window.performance.mark("mark_end_generating");
-window.performance.measure("measure_tea-party_generation", "mark_start_generating", "mark_end_generating");
-var timeToGenerate = window.performance.getEntriesByName("measure_tea-party_generation");
-console.log("Time to generate tea parties on load: " + timeToGenerate[0].duration + "ms");
+// window.performance.mark("mark_end_generating");
+// window.performance.measure("measure_tea-party_generation", "mark_start_generating", "mark_end_generating");
+// var timeToGenerate = window.performance.getEntriesByName("measure_tea-party_generation");
+// console.log("Time to generate tea parties on load: " + timeToGenerate[0].duration + "ms");
 
 // Iterator for number of times the Tea Pots in the background have scrolled.
 // Used by updatePositions() to decide when to log the average time per frame
@@ -483,22 +483,72 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
     console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-// // The following code for sliding background pizzas was pulled from Ilya's demo found at:
-// // https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-//
-// // Moves the sliding background pizzas based on scroll position
+// The following code for sliding background pizzas was pulled from Ilya's demo found at:
+// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
+
+function updatePositions() {
+    var heavyScroll = !!document.querySelector('#movingTeapots1').checked;
+    var items = document.querySelectorAll('.mover');
+    var cachedScrollTop = document.body.scrollTop;
+    for (var i = 0; i < items.length; i++) {
+        var phase;
+        if (heavyScroll)
+            phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+        else
+            phase = Math.sin((cachedScrollTop / 1250) + (i % 5));
+        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    }
+}
+
+window.addEventListener('scroll', updatePositions);
+document.addEventListener('DOMContentLoaded', function() {
+    var cols = 8;
+    var s = 256;
+    for (var i = 0; i < 200; i++) {
+        var el = document.createElement('img');
+        el.className = 'mover';
+        el.src = "img/red-tea-pot.png";
+        el.basicLeft = (i % cols) * s;
+        el.style.top = (Math.floor(i / cols) * s) + 'px';
+        document.body.appendChild(el);
+    }
+
+    updatePositions();
+});
+
+
+// The following code for sliding background TeaPartys was pulled from Ilya's demo found at:
+// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
+// MOVES the sliding background TeaPartys based on scroll position
+
+// var scrolling = false;
+// var scrollPosition = 0;
+// function startScrolling() {
+//     scrollPosition =  window.scrollY;
+//     if (!scrolling) {
+//         requestAnimationFrame(updatePositions);
+//     }
+//     scrolling = true;
+// }
+
+
 // function updatePositions() {
-//   frame++;
-//   window.performance.mark("mark_start_frame");
-//
-//   var items = document.querySelectorAll('.mover');
-//   for (var i = 0; i < items.length; i++) {
-//     var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
-//     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+//     scrolling = false;
+//     frame++; //increases the frame variable as defined above
+//     window.performance.mark("mark_start_frame"); //telling Timing API where to start measuring
+//     var items = document.getElementsByClassName('mover');
+//     var moverLength = items.length;
+//     var scrollTop = document.body.scrollTop;
+//     var scrollPhase = scrollTop / 1250;
+
+//     for (var i = 0; i < moverLength; i++) {
+//         var phase = Math.sin(scrollPhase + (i % 5));
+//         items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
 //   }
-//
+
 //   // User Timing API to the rescue again. Seriously, it's worth learning.
 //   // Super easy to create custom metrics.
+//   //Is he getting paid to plug this API? Seriously.
 //   window.performance.mark("mark_end_frame");
 //   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
 //   if (frame % 10 === 0) {
@@ -506,96 +556,34 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 //     logAverageFrame(timesToUpdatePosition);
 //   }
 // }
-//
+
 // // runs updatePositions on scroll
-// window.addEventListener('scroll', updatePositions);
-//
+// window.addEventListener('scroll', startScrolling);
+
 // // Generates the sliding pizzas when the page loads.
 // document.addEventListener('DOMContentLoaded', function() {
+
 //   var cols = 8;
 //   var s = 256;
-//   for (var i = 0; i < 200; i++) {
-//     var elem = document.createElement('img');
+//   var viewportHeight = window.innerHeight;
+//   var pizzasAppend = document.getElementById("movingTeapots1");
+
+//   var rows = Math.floor(viewportHeight / 256) + 1;
+//   var backgroundTeaPots = cols * rows;
+//   var elem;
+
+//   for (var i = 0; i < backgroundTeaPots; i++) {
+//     elem = document.createElement('img');
 //     elem.className = 'mover';
 //     elem.src = "img/red-tea-pot.png";
 //     elem.style.height = "100px";
 //     elem.style.width = "73.333px";
-//     elem.style.left = elem.basicLeft + 'px'
-//     elem.basicLeft = (i % cols) * s;
+//     elem.basicLeft = (i % cols) * s + 'px';
 //     elem.style.top = (Math.floor(i / cols) * s) + 'px';
-//     document.querySelector("#movingTeapots1").appendChild(elem);
+//     pizzasAppend.appendChild(elem);
 //   }
 //   updatePositions();
 // });
-
-
-// The following code for sliding background TeaPartys was pulled from Ilya's demo found at:
-// https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
-// MOVES the sliding background TeaPartys based on scroll position
-
-var scrolling = false;
-var scrollPosition = 0;
-function startScrolling() {
-    scrollPosition =  window.scrollY;
-    if (!scrolling) {
-        requestAnimationFrame(updatePositions);
-    }
-    scrolling = true;
-}
-
-
-function updatePositions() {
-    scrolling = false;
-    frame++; //increases the frame variable as defined above
-    window.performance.mark("mark_start_frame"); //telling Timing API where to start measuring
-    var items = document.getElementsByClassName('mover');
-    var moverLength = items.length;
-    var scrollTop = document.body.scrollTop;
-    var scrollPhase = scrollTop / 1250;
-
-    for (var i = 0; i < moverLength; i++) {
-        var phase = Math.sin(scrollPhase + (i % 5));
-        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-  }
-
-  // User Timing API to the rescue again. Seriously, it's worth learning.
-  // Super easy to create custom metrics.
-  //Is he getting paid to plug this API? Seriously.
-  window.performance.mark("mark_end_frame");
-  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
-  if (frame % 10 === 0) {
-    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-    logAverageFrame(timesToUpdatePosition);
-  }
-}
-
-// runs updatePositions on scroll
-window.addEventListener('scroll', startScrolling);
-
-// Generates the sliding pizzas when the page loads.
-document.addEventListener('DOMContentLoaded', function() {
-
-  var cols = 8;
-  var s = 256;
-  var viewportHeight = window.innerHeight;
-  var pizzasAppend = document.getElementById("movingTeapots1");
-
-  var rows = Math.floor(viewportHeight / 256) + 1;
-  var backgroundTeaPots = cols * rows;
-  var elem;
-
-  for (var i = 0; i < backgroundTeaPots; i++) {
-    elem = document.createElement('img');
-    elem.className = 'mover';
-    elem.src = "img/red-tea-pot.png";
-    elem.style.height = "100px";
-    elem.style.width = "73.333px";
-    elem.basicLeft = (i % cols) * s + 'px';
-    elem.style.top = (Math.floor(i / cols) * s) + 'px';
-    pizzasAppend.appendChild(elem);
-  }
-  updatePositions();
-});
 
 // // Generates the sliding pizzas when the page loads.
 // document.addEventListener('DOMContentLoaded', function() {
