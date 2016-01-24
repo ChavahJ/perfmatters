@@ -210,16 +210,29 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
 
     console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
+// shim layer with setTimeout fallback
+window.requestAnimFrame = (function(){
+  return  window.requestAnimationFrame ||
+          window.webkitRequestAnimationFrame ||
+          window.mozRequestAnimationFrame ||
+          window.oRequestAnimationFrame ||
+          window.msRequestAnimationFrame ||
+          function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element){
+            window.setTimeout(callback, 1000 / 60);
+          };
+})();
 
 function updatePositions() {
   frame++;
 
   window.performance.mark("mark_start_frame");
 
-  var items = document.querySelectorAll('img.mover');
+  var items = document.getElementsByClassName('mover');
+  var scrollY = (document.body.scrollTop / 1250);
+  var phase = Math.sin(scrollY + (i % 5));
 
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    // console.log(phase, document.body.scrollTop / 1250)
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
 
@@ -240,7 +253,7 @@ document.addEventListener('DOMContentLoaded', function() {
     var s = 256;
     var rowTop = 0;
 
-    for (var i = 0; i < 100; i++) {
+    for (var i = 0; i < 35; i++) {
         rowTop = (Math.floor(i / cols) *s);
             if (rowTop > Window.innerHeight) {
                 break;
