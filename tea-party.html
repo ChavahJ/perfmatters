@@ -1,258 +1,394 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Welcome to the Mad Tea Party Shoppe!">
-  <title>Alice Wonderer | Front-End Developer</title>
-  <style>
-    * {
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-      -box-sizing: border-box;
-      box-sizing: border-box;
-  }
-  html { font-size: 62.5%; }
-  body { margin: auto; font-size: 1.6rem; line-height: 2rem; font-family: 'Alice', serif; }
-  .container { background-color: rgba(148, 166, 156, 0.9); max-width: 85%; padding: 3rem; }
-  input { background: #d2d5b4; font-size: 1.75rem; }
-  form { display: inline-block; }
-  .randomTeaPartyContainer { width: 40rem; height: 40rem; display: flex; float: left; }
-  @media (max-width: 768px) {.randomTeaPartyContainer {width: 50rem;}}
-  @media (max-width: 414px) {.randomTeaPartyContainer {width: 28rem; height: 45rem;}}
-  .row { display: inline-block; }
-  .img-banner { padding: 2rem 0; max-width: 100%; }
-  .img-tea { max-width: 115%; }
-  #sizeSlider { margin: 2rem 0; max-width: 33.33%; }
-  .mover {
-    position: fixed;
-    width: 256px;
-    z-index: -1;
-}
-footer { margin: 2rem 0; padding: 2rem 0; border-top: 1px solid red; }
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Welcome to the Mad Tea Party Shoppe!">
+    <title>
+        Alice Wonderer | Front-End Developer
+    </title>
+    <style>
+    html {
+        font-size: 62.5%;
+    }
+    body {
+        margin: auto;
+        font-size: 1.6rem;
+        line-height: 2rem;
+        font-family: 'Alice', serif;
+    }
+    .container {
+        background-color: rgba(148, 166, 156, 0.9);
+        max-width: 85%;
+        padding: 3rem;
+    }
+    input {
+        background: #d2d5b4;
+        font-size: 1.75rem;
+    }
+    form {
+        display: inline-block;
+    }
+    .randomTeaPartyContainer {
+        width: 40rem;
+        height: 40rem;
+        display: flex;
+        float: left;
+    }
+    @media (max-width: 768px) {
+        .randomTeaPartyContainer {
+            width: 50rem;
+        }
+    }
+    @media (max-width: 414px) {
+        .randomTeaPartyContainer {
+            width: 28rem;
+            height: 45rem;
+        }
+    }
+    .row {
+        display: inline-block;
+    }
+    .img-banner {
+        padding: 2rem 0;
+        max-width: 100%;
+    }
+    .img-tea {
+        max-width: 115%;
+    }
+    #sizeSlider {
+        margin: 2rem 0;
+        max-width: 33.33%;
+    }
+    .mover {
+        position: fixed;
+        width: 256px;
+        z-index: -1;
+    }
+    footer {
+        margin: 2rem 0;
+        padding: 2rem 0;
+        border-top: 1px solid red;
+    }
+    </style>
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
 </head>
 
 <body>
-  <div class="container">
-    <header>
-      <div class="row">
-        <div class="col-xs-12">
-          <a href="index.html"><h1>Crazy Tea Parties</h1></a>
-      </div>
-      <div id="menu" class="col-xs-12">
-          <form action="#randomTeaParty">
-            <input type="submit" value="Menu">
-        </form>
-        <form action="#ingredients">
-            <input type="submit" value="Our Ingredients">
-        </form>
-        <form action="#locations">
-            <input type="submit" value="Locations">
-        </form>
-        <form action="#" onsubmit="alert('Thanks for clicking! This button doesn\'t do anything because this is a totally fake website.')">
-            <input type="submit" value="Contact Us">
-        </form>
-    </div><!--end of nav bar -->
-</div><!-- end of header row -->
-</header>
-</div><!-- end of first container -->
+    <div class="container">
+        <header>
+            <div class="row">
+                <div class="col-xs-12">
+                    <a href="index.html">
+                        <h1>
+                            Crazy Tea Parties
+                        </h1>
+                    </a>
+                </div>
+                <div id="menu" class="col-xs-12">
+                    <form action="#randomTeaParty">
+                        <input type="submit" value="Menu">
+                    </form>
+                    <form action="#ingredients">
+                        <input type="submit" value="Our Ingredients">
+                    </form>
+                    <form action="#locations">
+                        <input type="submit" value="Locations">
+                    </form>
+                    <form action="#" onsubmit="alert('Thanks for clicking! This button doesn\'t do anything because this is a totally fake website.')">
+                        <input type="submit" value="Contact Us">
+                    </form>
+                </div>
+                <!--end of nav bar -->
+            </div>
+            <!-- end of header row -->
+        </header>
+    </div>
+    <!-- end of first container -->
 
-<!-- this div is populated through the main.js file and creates the scrolling tea pots in the background -->
-<div id="movingTeapots1">
-</div>
+    <!-- this div is populated through the main.js file and creates the scrolling tea pots in the background -->
+    <div id="movingTeapots1">
+    </div>
 
-<div class="container">
-    <div id="callToAction" class="row">
-      <div class="col-md-4">
-          <img src="img/tea-party-color.jpg" class="img-banner center-block" alt="tea party banner">
-      </div>
-      <div class="col-md-8">
-        <h2>We Have Hundreds of Mad Tea-Parties!</h2>
-        <p>
-          There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. `Very uncomfortable for the Dormouse,' thought Alice; `only, as it's asleep, I suppose it doesn't mind.'
-      </p>
-      <p>
-          The table was a large one, but the three were all crowded together at one corner of it: `No room! No room!' they cried out when they saw Alice coming. `There's plenty of room!' said Alice indignantly, and she sat down in a large arm-chair at one end of the table.
-      </p>
-      <form action="#randomTeaParty">
-          <input type="submit" value="Pick a Tea Party Now!">
-      </form>
-  </div>
-</div><!-- end of introductory row -->
+    <div class="container">
+        <div id="callToAction" class="row">
+            <div class="col-md-4">
+                <img src="img/tea-party-color.jpg" class="img-banner center-block" alt="tea party banner">
+            </div>
+            <div class="col-md-8">
+                <h2>
+                    We Have Hundreds of Mad Tea-Parties!
+                </h2>
+                <p>
+                    There was a table set out under a tree in front of the house, and the March Hare and the Hatter were having tea at it: a Dormouse was sitting between them, fast asleep, and the other two were using it as a cushion, resting their elbows on it, and talking over its head. `Very uncomfortable for the Dormouse,' thought Alice; `only, as it's asleep, I suppose it doesn't mind.'
+                </p>
+                <p>
+                    The table was a large one, but the three were all crowded together at one corner of it: `No room! No room!' they cried out when they saw Alice coming. `There's plenty of room!' said Alice indignantly, and she sat down in a large arm-chair at one end of the table.
+                </p>
+                <form action="#randomTeaParty">
+                    <input type="submit" value="Pick a Tea Party Now!">
+                </form>
+            </div>
+        </div>
+        <!-- end of introductory row -->
 
-<div id="ingredients" class="row">
-  <div class="col-xs-12">
-    <h2>Mad Tea Party Ingredients</h2>
-    <p>
-      `Have some wine,' the March Hare said in an encouraging tone.
-  </p>
-  <p>
-      Alice looked all round the table, but there was nothing on it but tea. `I don't see any wine,' she remarked.
-  </p>
-  <p>
-      `There isn't any,' said the March Hare.
-  </p>
-  <p>
-      `Then it wasn't very civil of you to offer it,' said Alice angrily.
-  </p>
-  <p>
-      `It wasn't very civil of you to sit down without being invited,' said the March Hare.
-  </p>
-</div>
-</div><!-- end of ingredients' row -->
+        <div id="ingredients" class="row">
+            <div class="col-xs-12">
+                <h2>
+                    Mad Tea Party Ingredients
+                </h2>
+                <p>
+                    `Have some wine,' the March Hare said in an encouraging tone.
+                </p>
+                <p>
+                    Alice looked all round the table, but there was nothing on it but tea. `I don't see any wine,' she remarked.
+                </p>
+                <p>
+                    `There isn't any,' said the March Hare.
+                </p>
+                <p>
+                    `Then it wasn't very civil of you to offer it,' said Alice angrily.
+                </p>
+                <p>
+                    `It wasn't very civil of you to sit down without being invited,' said the March Hare.
+                </p>
+            </div>
+        </div>
+        <!-- end of ingredients' row -->
 
-<div id="locations" class="row">
-  <div class="col-xs-12">
-    <h2>Locations</h2>
-</div>
-<div class="col-xs-6">
-    <h3>Wonderland</h3>
-    <p>1864 Carroll Road<br>Oxford, CA<br>93015<br>805-555-5555</p>
-</div>
-<div class="col-xs-6">
-    <h3>Looking Glass</h3>
-    <p>1871 Dodgson Way<br>New York, NY<br>00100<br>555-555-5555</p>
-</div>
-</div><!-- end of locations' row -->
+        <div id="locations" class="row">
+            <div class="col-xs-12">
+                <h2>
+                    Locations
+                </h2>
+            </div>
+            <div class="col-xs-6">
+                <h3>
+                    Wonderland
+                </h3>
+                <p>
+                    1864 Carroll Road
+                    <br>
+                    Oxford, CA
+                    <br>
+                    93015
+                    <br>
+                    805-555-5555
+                </p>
+            </div>
+            <div class="col-xs-6">
+                <h3>
+                    Looking Glass
+                </h3>
+                <p>
+                    1871 Dodgson Way
+                    <br>
+                    New York, NY
+                    <br>
+                    00100
+                    <br>
+                    555-555-5555
+                </p>
+            </div>
+        </div>
+        <!-- end of locations' row -->
 
-<div id="teaPartyGenerator" class="row">
-  <div class="col-xs-12">
-    <h2>Our Tea Parties</h2>
-    <h4>How many people would you like to serve? Use the slider below to select your group size.</h4>
-</div>
-<div class="col-xs-12">
-    <div id="teaPartySize">Medium (3-4 Participants)</div>
-</div>
-<div class="col-xs-12">
-<input id="sizeSlider" type="range" min="1" max="3" value="2" step="1" onchange="resizeTeaParty(this.value)">
-</div>
-</div><!-- end of tea party generator -->
+        <div id="teaPartyGenerator" class="row">
+            <div class="col-xs-12">
+                <h2>
+                    Our Tea Parties
+                </h2>
+                <h4>
+                    How many people would you like to serve? Use the slider below to select your group size.
+                </h4>
+            </div>
+            <div class="col-xs-12">
+                <div id="teaPartySize">
+                    Medium (3-4 Participants)
+                </div>
+            </div>
+            <div class="col-xs-12">
+                <input id="sizeSlider" type="range" min="1" max="3" value="2" step="1" onchange="resizeTeaParty(this.value)">
+            </div>
+        </div>
+        <!-- end of tea party generator -->
 
-<div id="randomTeaParty" class="row">
-  <div id="teaParty0" class="randomTeaPartyContainer">
-    <div class="col-md-6">
-      <img src="img/red-tea-pot-r.png" class="img-tea">
-  </div>
-  <div class="col-md-6">
-      <h3>The Mad Hatter Special</h3>
-      <ul>
-        <li>Earl Grey Tea</li>
-        <li>Apple Crumble</li>
-        <li>Petit Fours</li>
-        <li>American Cheese</li>
-        <li>Mayonnaise</li>
-        <li>Whole Wheat Bread</li>
-    </ul>
-</div>
-</div>
+        <div id="randomTeaParty" class="row">
+            <div id="teaParty0" class="randomTeaPartyContainer">
+                <div class="col-md-6">
+                    <img src="img/red-tea-pot-r.png" class="img-tea" alt="a beautiful red tea pot">
+                </div>
+                <div class="col-md-6">
+                    <h3>
+                        The Mad Hatter Special
+                    </h3>
+                    <ul>
+                        <li>
+                            Earl Grey Tea
+                        </li>
+                        <li>
+                            Apple Crumble
+                        </li>
+                        <li>
+                            Petit Fours
+                        </li>
+                        <li>
+                            American Cheese
+                        </li>
+                        <li>
+                            Mayonnaise
+                        </li>
+                        <li>
+                            Whole Wheat Bread
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-<div id="teaParty1" class="randomTeaPartyContainer">
-    <div class="col-md-6">
-      <img src="img/red-tea-pot-r.png" class="img-tea">
-  </div>
-  <div class="col-md-6">
-      <h3>The Dormouse Special</h3>
-      <ul>
-        <li>Chamomile Tea</li>
-        <li>Hot Chocolate</li>
-        <li>Chocolate Chip Cookies</li>
-        <li>Butter</li>
-        <li>White Rolls</li>
-    </ul>
-</div>
-</div>
+            <div id="teaParty1" class="randomTeaPartyContainer">
+                <div class="col-md-6">
+                    <img src="img/red-tea-pot-r.png" class="img-tea" alt="a beautiful red tea pot">
+                </div>
+                <div class="col-md-6">
+                    <h3>
+                        The Dormouse Special
+                    </h3>
+                    <ul>
+                        <li>
+                            Chamomile Tea
+                        </li>
+                        <li>
+                            Hot Chocolate
+                        </li>
+                        <li>
+                            Chocolate Chip Cookies
+                        </li>
+                        <li>
+                            Butter
+                        </li>
+                        <li>
+                            White Rolls
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-<div id="teaParty2" class="randomTeaPartyContainer">
-    <div class="col-md-6">
-      <img src="img/red-tea-pot-r.png" class="img-tea">
-  </div>
-  <div class="col-md-6">
-      <h3>The March Hare Special</h3>
-      <ul>
-        <li>Hot Apple Cider</li>
-        <li>Pennyroyal Tea</li>
-        <li>Banana Cake</li>
-        <li>Sugar Cookies</li>
-        <li>Margarine</li>
-        <li>Spelt Bread</li>
-    </ul>
-</div>
-</div>
+            <div id="teaParty2" class="randomTeaPartyContainer">
+                <div class="col-md-6">
+                    <img src="img/red-tea-pot-r.png" class="img-tea" alt="a beautiful red tea pot">
+                </div>
+                <div class="col-md-6">
+                    <h3>
+                        The March Hare Special
+                    </h3>
+                    <ul>
+                        <li>
+                            Hot Apple Cider
+                        </li>
+                        <li>
+                            Pennyroyal Tea
+                        </li>
+                        <li>
+                            Banana Cake
+                        </li>
+                        <li>
+                            Sugar Cookies
+                        </li>
+                        <li>
+                            Margarine
+                        </li>
+                        <li>
+                            Spelt Bread
+                        </li>
+                    </ul>
+                </div>
+            </div>
 
-<!-- additional divs will be appended here by main.js -->
+            <!-- additional divs will be appended here by main.js -->
 
-</div><!-- end of tea party container -->
-</div><!-- end of randomTeaParty div -->
-<div><!-- end of randomTeaParty row -->
+        </div>
+        <!-- end of tea party container -->
+    </div>
+    <!-- end of randomTeaParty div -->
+    <div>
+        <!-- end of randomTeaParty row -->
 
-    <footer>
-      <p class="text-center">Thanks for visiting! &copy; 2016 AliceW</p>
-  </footer>
-</div><!-- end of page conatiner -->
+        <footer>
+            <p class="text-center">
+                Thanks for visiting! &copy; 2016 AliceW
+            </p>
+        </footer>
+    </div>
+    <!-- end of page conatiner -->
 </body>
 
-<script async type="text/javascript" src="js/main.js"></script>
 <script>
 
-var frame = 0; //iterator for the frames of scrolling tea pots
+var frame = 0;
+//iterator for the frames of scrolling tea pots
 
 // Logs the average amount of time per 10 frames needed to move the sliding background TeaPartys on scroll.
-function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
+function logAverageFrame(times) {
+    // times is the array of User Timing measurements from updatePositions()
     var numberOfEntries = times.length;
     var sum = 0;
     for (var i = numberOfEntries - 1; i > numberOfEntries - 11; i--) {
-    sum = sum + times[i].duration;
+        sum = sum + times[i].duration;
     }
 
-    console.log("Average time to generate last 10 frames: " + sum / 10 + "ms"); //60 fps = ~10 milliseconds per frame
+    console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
+    //60 fps = ~10 milliseconds per frame
 }
 
 //I moved this variable outside of the function and into the global scope to speed things up
 var items = document.getElementsByClassName('mover');
 
 function updatePositions() {
-  frame++;
+    frame++;
 
-  window.performance.mark("mark_start_frame");
+    window.performance.mark("mark_start_frame");
 
-  var scrollY = (document.body.scrollTop / 1250);
+    var scrollY = (document.body.scrollTop / 1250);
 
-  for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin(scrollY + (i % 5));
-    items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
-  }
+    for (var i = 0; i < items.length; i++) {
+        var phase = Math.sin(scrollY + (i % 5));
+        items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
+    }
 
-  window.performance.mark("mark_end_frame");
-  window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
+    window.performance.mark("mark_end_frame");
+    window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
 
-  if (frame % 10 === 0) {
-    var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
-    logAverageFrame(timesToUpdatePosition);
-  }
+    if (frame % 10 === 0) {
+        var timesToUpdatePosition = window.performance.getEntriesByName("measure_frame_duration");
+        logAverageFrame(timesToUpdatePosition);
+    }
 }
 
-window.addEventListener('scroll', updatePositions); //this tells the browser to start animating once the user is scrolling
+window.addEventListener('scroll', updatePositions);
+//this tells the browser to start animating once the user is scrolling
 
 document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
-    var rowTop = 0; //variable added for break function below
+    var rowTop = 0;
+    //variable added for break function below
 
     //I reduced the number of tea pots on screen from 200 to 35
     //I also added a break so only tea pots within the window view would be generated
     for (var i = 0; i < 35; i++) {
         rowTop = (Math.floor(i / cols) *s);
-            if (rowTop > Window.innerHeight) {
-                break;
-            }
+        if (rowTop > Window.innerHeight) {
+            break;
+        }
 
-        var el = document.createElement('img'); //creates an img tag within #movingTeapots1 div
-        el.className = 'mover'; //adds the class name mover to the img tag
-        el.src = "img/red-tea-pot.png"; //provides the src of the img
+        var el = document.createElement('img');
+        //creates an img tag within #movingTeapots1 div
+        el.className = 'mover';
+        //adds the class name mover to the img tag
+        el.src = "img/red-tea-pot.png";
+        //provides the src of the img
         el.style.height = "7rem";
         el.style.width = "10rem";
         el.basicLeft = (i % cols) * s;
@@ -264,5 +400,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+<script async type="text/javascript" src="js/main.js"></script>
 
 </html>
