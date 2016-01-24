@@ -10,17 +10,25 @@
 5. Include a README file detailing all the steps to successfully run the application (huh? which application?), and outline the optimization preformed.
 
 ####Part 1: Score 90+ on PageSpeed Insights for index.html
+When I [go here](https://developers.google.com/speed/pagespeed/insights/?url=http%3A%2F%2Fchavahj.github.io%2Fperfmatters%2F&tab=mobile) I get the following results for [index.html](http://chavahj.github.io/perfmatters/):
+
+1. Desktop: 93/100
+2. Mobile: 93/100
 
 ####Part 2: Ensure Consistent Rate of 60fps for Scrolling Tea pots
 
 ####Part 3: Optimize the Size Slider
+1. Open the [tea-party.html page](http://chavahj.github.io/perfmatters/tea-party.html).
+2. Open the Dev Tools panel and go to the console log.
+3. Use the slider to change the size of the tea parties.
+4. The console log shows: "Time to resize tea-party: 1.1200000000008004ms".
 
 ####Part 4: Document the Code in main.js
 
 ####Part 5: Include a README file
 I have included a README file. :-)
 
-####NOTES ABOUT THE Project
+####NOTES ABOUT THE PROJECT
 1. I should have started working on this more seriously before January 12th, 2016. I realize I am a week late in submitting my project.
 2. I missed having my team, as this was the first project I did after the teams were disbanded. I admit, I didn't make it to every team meeting, but it was nice to have a smaller group to ask all those "stupid" questions, versus feeling like a total ignoramus in the broader discussion forums.
 3. I wasted too much time worrying about how the site looked. It was hard to let go of aesthetics for this project, although I got better at the end (especially once the deadline passed).
