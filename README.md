@@ -17,3 +17,10 @@
 ####Part 4: Document the Code in main.js
 
 ####Part 5: Include a README file
+I have included a README file. :-)
+
+####NOTES ABOUT THE Project
+1. I should have started working on this more seriously before January 12th, 2016. I realize I am a week late in submitting my project.
+2. I missed having my team, as this was the first project I did after the teams were disbanded. I admit, I didn't make it to every team meeting, but it was nice to have a smaller group to ask all those "stupid" questions, versus feeling like a total ignoramus in the broader discussion forums.
+3. I wasted too much time worrying about how the site looked. It was hard to let go of aesthetics for this project, although I got better at the end (especially once the deadline passed).
+4. The pizzas really bothered me, and I also wasted time switching over to the Alice in Wonderland theme. But it really helped me function better for the remaining duration of the project. Probably the pizzas aren't a problem for most students -- I happen to keep kosher, and the default pizzas were about as not kosher as it gets.
