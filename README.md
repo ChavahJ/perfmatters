@@ -23,7 +23,16 @@ What did I do to optimize this page?
 5. Optimized the images for the web (using PhotoShop). I used low resolution, progressive jpeg files, without any meta data included.
 
 ####Part 2: Ensure Consistent Rate of 60fps for Scrolling Tea pots
+This was the most difficult part of the project (for me at least). I think I spent more time on this section than everything else combined. To see the results:
+1. Open the [tea-party.html page](http://chavahj.github.io/perfmatters/tea-party.html).
+2. Open the Dev Tools panel and go to the Timeline tab.
+3. Click on the "record" button in the upper-left hand corner of the Timeline panel, or hit Ctrl+E.
+4. Scroll down the page. Admire the beautiful, red tea pots moving across the background.
+5. Click on the record button again to stop the recording (or hit Ctrl+E again).
+6. You will see lovely green hills, and if you hover over the grey bars where the overall time is being demarcated, you will see that most of the time the scrolling is hitting around 60ps.
+7. The console log will show something like: "Average time to generate last 10 frames: 0.28150000000041475ms".
 
+![alt text](https://github.com/chavahj/perfmatters/img/62-fps.JPG "Snippet of Google Timeline")
 
 ####Part 3: Optimize the Size Slider
 1. Open the [tea-party.html page](http://chavahj.github.io/perfmatters/tea-party.html).
@@ -32,6 +41,7 @@ What did I do to optimize this page?
 4. The console log shows: "Time to resize tea-party: 1.1200000000008004ms".
 
 ####Part 4: Document the Code in main.js
+I did add comments here and there. It might be that I could have done more. But that's what happens when your project is already a week late.
 
 ####Part 5: Include a README file
 I have included a README file. I even changed it from the original one included.  :-)
