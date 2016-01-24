@@ -198,7 +198,7 @@ footer { margin: 2rem 0; padding: 2rem 0; border-top: 1px solid red; }
 <script async type="text/javascript" src="js/main.js"></script>
 <script>
 
-var frame = 0;
+var frame = 0; //iterator for the frames of scrolling tea pots
 
 // Logs the average amount of time per 10 frames needed to move the sliding background TeaPartys on scroll.
 function logAverageFrame(times) {   // times is the array of User Timing measurements from updatePositions()
@@ -208,31 +208,23 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
     sum = sum + times[i].duration;
     }
 
-    console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
+    console.log("Average time to generate last 10 frames: " + sum / 10 + "ms"); //60 fps = ~10 milliseconds per frame
 }
-// shim layer with setTimeout fallback
-window.requestAnimFrame = (function(){
-  return  window.requestAnimationFrame ||
-          window.webkitRequestAnimationFrame ||
-          window.mozRequestAnimationFrame ||
-          window.oRequestAnimationFrame ||
-          window.msRequestAnimationFrame ||
-          function(/* function FrameRequestCallback */ callback, /* DOMElement Element */ element){
-            window.setTimeout(callback, 1000 / 60);
-          };
-})();
+
+//I moved this variable outside of the function and into the global scope to speed things up
+var items = document.getElementsByClassName('mover');
 
 function updatePositions() {
   frame++;
 
   window.performance.mark("mark_start_frame");
 
-  var items = document.getElementsByClassName('mover');
+  var scrollY = (document.body.scrollTop / 1250);
+
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin(scrollY + (i % 5));
     items[i].style.left = items[i].basicLeft + 100 * phase + 'px';
   }
-
 
   window.performance.mark("mark_end_frame");
   window.performance.measure("measure_frame_duration", "mark_start_frame", "mark_end_frame");
@@ -243,22 +235,24 @@ function updatePositions() {
   }
 }
 
-window.addEventListener('scroll', updatePositions);
+window.addEventListener('scroll', updatePositions); //this tells the browser to start animating once the user is scrolling
 
 document.addEventListener('DOMContentLoaded', function() {
     var cols = 8;
     var s = 256;
-    var rowTop = 0;
+    var rowTop = 0; //variable added for break function below
 
+    //I reduced the number of tea pots on screen from 200 to 35
+    //I also added a break so only tea pots within the window view would be generated
     for (var i = 0; i < 35; i++) {
         rowTop = (Math.floor(i / cols) *s);
             if (rowTop > Window.innerHeight) {
                 break;
             }
 
-        var el = document.createElement('img');
-        el.className = 'mover';
-        el.src = "img/red-tea-pot.png";
+        var el = document.createElement('img'); //creates an img tag within #movingTeapots1 div
+        el.className = 'mover'; //adds the class name mover to the img tag
+        el.src = "img/red-tea-pot.png"; //provides the src of the img
         el.style.height = "7rem";
         el.style.width = "10rem";
         el.basicLeft = (i % cols) * s;
@@ -266,7 +260,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector("#movingTeapots1").appendChild(el);
     }
 
-    requestAnimationFrame(updatePositions);
+    updatePositions();
 });
 
 </script>
