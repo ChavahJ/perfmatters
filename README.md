@@ -31,7 +31,7 @@ This was the most difficult part of the project (for me at least). I think I spe
 3. Click on the "record" button in the upper-left hand corner of the Timeline panel, or hit Ctrl+E.
 4. Scroll down the page. Admire the beautiful, red tea pots moving across the background.
 5. Click on the record button again to stop the recording (or hit Ctrl+E again).
-6. You will see lovely green hills, and if you hover over the grey bars where the overall time is being demarcated, you will see that most of the time the scrolling is hitting around 60ps.
+6. You will see lovely green hills, and if you hover over the grey bars where the overall time is being demarcated, you will see that most of the time the scrolling is hitting around 60ps (see image pasted below).
 7. The console log will show something like: "Average time to generate last 10 frames: 0.28150000000041475ms".
 
 ![alt text](img/62-fps.JPG "Snippet of Google Timeline")
