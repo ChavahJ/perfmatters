@@ -16,6 +16,7 @@ When I [go here](https://developers.google.com/speed/pagespeed/insights/?url=htt
 2. Mobile: 93/100
 
 What did I do to optimize this page?
+
 1. Restructured it (mainly so I could understand what was going on).
 2. Moved the CSS into script tags on the html document itself.
 3. Added a WebFont load script for the Google Font I am using.
@@ -24,6 +25,7 @@ What did I do to optimize this page?
 
 ####Part 2: Ensure Consistent Rate of 60fps for Scrolling Tea pots
 This was the most difficult part of the project (for me at least). I think I spent more time on this section than everything else combined. To see the results:
+
 1. Open the [tea-party.html page](http://chavahj.github.io/perfmatters/tea-party.html).
 2. Open the Dev Tools panel and go to the Timeline tab.
 3. Click on the "record" button in the upper-left hand corner of the Timeline panel, or hit Ctrl+E.
@@ -32,7 +34,7 @@ This was the most difficult part of the project (for me at least). I think I spe
 6. You will see lovely green hills, and if you hover over the grey bars where the overall time is being demarcated, you will see that most of the time the scrolling is hitting around 60ps.
 7. The console log will show something like: "Average time to generate last 10 frames: 0.28150000000041475ms".
 
-![alt text](https://github.com/chavahj/perfmatters/img/62-fps.JPG "Snippet of Google Timeline")
+![alt text](img/62-fps.JPG "Snippet of Google Timeline")
 
 ####Part 3: Optimize the Size Slider
 1. Open the [tea-party.html page](http://chavahj.github.io/perfmatters/tea-party.html).
