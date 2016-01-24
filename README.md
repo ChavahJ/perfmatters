@@ -1,7 +1,8 @@
 #Project 4: FEND @ Udacity
 ## Website Performance Optimization Project
 
-*The Challenge:*
+**The Challenge:**
+
 1. Optimize the critical rendering path on index.html to achieve a PageSpeed score of 90+.
 2. Optimize the browser rendering on tea-party.html to ensure a consistent frame rate of 60fps when scrolling on this page.
 3. Optimize the size slider on tea-party.html so that resizing the tea pots takes less than 5ms, as shown in the browser console.
